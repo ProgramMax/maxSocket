@@ -1,0 +1,1 @@
+git remote add max git@github.com:ProgramMax/max.git

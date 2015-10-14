@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{f563d29c-346d-495b-a4c7-b809892ba309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Include">
+      <UniqueIdentifier>{2122eb67-324a-48cd-9728-17c8a44a532c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\IP">
+      <UniqueIdentifier>{f5d74646-fa5d-45ea-a299-6747272d87d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Linux">
+      <UniqueIdentifier>{1c882382-23a4-4ec8-984c-d622fdb8e1cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Linux\Include">
+      <UniqueIdentifier>{8e1d84bc-b727-4c0c-a6a8-7ef4d848fec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{88e45368-32a4-4a98-9ff6-7c66e8543dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Exceptions">
+      <UniqueIdentifier>{7dba04f8-bb44-46cb-a4d8-33673d43d0f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Include\maxSocket">
+      <UniqueIdentifier>{3e43c867-7d0e-4d43-b419-69a29cfa5329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Include\maxSocket\IP">
+      <UniqueIdentifier>{93372688-9e91-4886-8c68-28e78af34f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{8b8055e7-8926-481b-be10-858bcc384e3c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Code\Common\Buffer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Common\IP\Address.cpp">
+      <Filter>Common\IP</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\Socket.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\PrecompiledHeader.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\Socket.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\Exceptions\GetLastError.cpp">
+      <Filter>Windows\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\getaddrinfoFunctionPointers.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\getaddrinfo.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\gethostbyname.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\SocketSystem.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\SocketSystem.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion4Policy.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion6Policy.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\TestResolveHostName.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion4Policy.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion6Policy.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\UnitTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\TestHttp.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Code\Common\IP\AddressVersion4.hpp">
+      <Filter>Common\IP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\IP\AddressVersion6.hpp">
+      <Filter>Common\IP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\PrecompiledHeader.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\Exceptions\GetLastError.hpp">
+      <Filter>Windows\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Linux\Include\PrecompiledHeader.hpp">
+      <Filter>Linux\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Address.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Version.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\AddressFamily.hpp">
+      <Filter>Common\Include\maxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\Buffer.hpp">
+      <Filter>Common\Include\maxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\Protocol.hpp">
+      <Filter>Common\Include\maxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\Socket.hpp">
+      <Filter>Common\Include\maxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\SocketSystem.hpp">
+      <Filter>Common\Include\maxSocket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\getaddrinfoFunctionPointers.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\getaddrinfo.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\gethostbyname.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion4Policy.hpp">
+      <Filter>Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion6Policy.hpp">
+      <Filter>Linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion4Policy.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion6Policy.hpp">
+      <Filter>Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Code\Common\IP\AddressVersion4.inl">
+      <Filter>Common\IP</Filter>
+    </None>
+    <None Include="..\..\Code\Common\IP\AddressVersion6.inl">
+      <Filter>Common\IP</Filter>
+    </None>
+    <None Include="..\..\TODO.md" />
+  </ItemGroup>
+</Project>
