@@ -19,9 +19,6 @@
     <Filter Include="Windows">
       <UniqueIdentifier>{88e45368-32a4-4a98-9ff6-7c66e8543dc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Windows\Exceptions">
-      <UniqueIdentifier>{7dba04f8-bb44-46cb-a4d8-33673d43d0f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Common\Include\maxSocket">
       <UniqueIdentifier>{3e43c867-7d0e-4d43-b419-69a29cfa5329}</UniqueIdentifier>
     </Filter>
@@ -47,9 +44,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Code\Windows\Socket.cpp">
       <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\Exceptions\GetLastError.cpp">
-      <Filter>Windows\Exceptions</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Code\Windows\getaddrinfoFunctionPointers.cpp">
       <Filter>Windows</Filter>
@@ -100,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Code\Windows\PrecompiledHeader.hpp">
       <Filter>Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\Exceptions\GetLastError.hpp">
-      <Filter>Windows\Exceptions</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Code\Linux\Include\PrecompiledHeader.hpp">
       <Filter>Linux\Include</Filter>
