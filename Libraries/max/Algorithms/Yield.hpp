@@ -27,15 +27,15 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAX_ALGORITHMS_YEILD_HPP
-#define MAX_ALGORITHMS_YEILD_HPP
+#ifndef MAX_ALGORITHMS_YIELD_HPP
+#define MAX_ALGORITHMS_YIELD_HPP
 
 #include <max/Compiling/Configuration/Compiler.hpp>
 
 #ifdef MAX_COMPILER_VC
 	#ifdef MAX_IA64
 		#include <intrin.h>
-		#define MAX_YEILD __yeild()
+		#define MAX_YIELD __yield()
 	#else
 		// This is only supported on SSE machines
 		// But earlier machines generate a nop which means we don't need to test for SSE support
@@ -43,7 +43,7 @@
 		#define MAX_YEILD _mm_pause()
 	#endif
 #else
-	#define MAX_YEILD
+	#define MAX_YIELD
 #endif
 
-#endif // #ifndef MAX_ALGORITHMS_YEILD_HPP
+#endif // #ifndef MAX_ALGORITHMS_YIELD_HPP
