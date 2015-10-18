@@ -45,4 +45,14 @@
 	#define MAX_EXCEPTIONS_SUPPORTED
 #endif
 
+// noexcept supported in GCC 4.6+
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6) && defined(__GXX_EXPERIMENTAL_CXX0X__)
+	#define MAX_NOEXCEPT_SUPPORTED
+#endif
+
+// inline namespaces are supported in GCC 4.4+
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 4) && defined(__GXX_EXPERIMENTAL_CXX0X__)
+	#define MAX_INLINE_NAMESPACES_SUPPORTED
+#endif
+
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_GCC_HPP
