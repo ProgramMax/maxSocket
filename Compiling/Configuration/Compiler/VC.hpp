@@ -96,6 +96,14 @@
 	#define MAX_EXCEPTIONS_SUPPORTED
 #endif
 
+#if _MSC_FULL_VER >= 180021114
+	#define MAX_NOEXCEPT_SUPPORTED
+#endif
+
+#if _MSC_VER >= 1900
+	#define	MAX_INLINE_NAMESPACES_SUPPORTED
+#endif
+
 #if (_MSC_VER > 1900)
 #error "Unknown compiler version"
 #endif

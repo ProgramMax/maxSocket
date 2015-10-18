@@ -27,30 +27,23 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-namespace max
-{
-namespace Algirhtms
-{
+#ifndef MAX_COMPILING_CURRENTVERSIONNAMESPACE_HPP
+#define MAX_COMPILING_CURRENTVERSIONNAMESPACE_HPP
 
-	inline unsigned int SwapEndian( unsigned int Value ) MAX_DOES_NOT_THROW
-	{
-		return ( ( ( Value & 0xff000000 ) >> 24 ) | ( ( Value & 0x00ff0000 ) >> 8 ) | ( ( Value & 0x0000ff00 ) << 8 )  | ( ( Value & 0x000000ff ) << 24 ) );
-	}
+// Note: These two macro definitions do not behave identically.
+// Inline namespaces from C++11 allow templated types to be specialized
+// from their included namespace. Using namespace does not allow that.
+// Additionally, the parent namespace is included in ADL with
+// inline namespaces.
 
-	inline unsigned short SwapEndian( unsigned short Value ) MAX_DOES_NOT_THROW
-	{
-		return static_cast< unsigned short >( ( ( Value & 0xff00 ) >> 8 ) | ( ( Value & 0x00ff ) << 8 ) );
-	}
+#include <max/Compiling/Configuration/Compiler.hpp>
 
-	inline int SwapEndian( int Value ) MAX_DOES_NOT_THROW
-	{
-		return SwapEndian( reinterpret_cast< unsigned int >( Value ) );
-	}
+#ifndef MAX_INLINE_NAMESPACES_SUPPORTED
+	#define MAX_CURRENT_VERSION_NAMESPACE_BEGIN( Name ) inline namespace Name
+	#define MAX_CURRENT_VERSION_NAMESPACE_END( Name )
+#else
+	#define MAX_CURRENT_VERSION_NAMESPACE_BEGIN( Name ) namespace Name
+	#define MAX_CURRENT_VERSION_NAMESPACE_END( Name )   using namespace Name;
+#endif
 
-	inline short SwapEndian( short Value ) MAX_DOES_NOT_THROW
-	{
-		return SwapEndian( reinterpret_cast< unsigned short >( Value ) );
-	}
-
-} // namespace Algorithms
-} // namespace max
+#endif // #ifndef MAX_COMPILING_CURRENTVERSIONNAMESPACE_HPP
