@@ -34,7 +34,7 @@ namespace IP
 
 	template< typename NativeAddressPolicy >
 	PlatformIndependentAddressVersion4< NativeAddressPolicy >::PlatformIndependentAddressVersion4( NativeAddressPolicy policy ) MAX_DOES_NOT_THROW
-		: Address( Version::Version4 ),
+		: v0::IP::Address( v0::IP::Version::Version4 ),
 		m_NativeAddressPolicy( policy )
 	{
 	}

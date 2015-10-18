@@ -43,6 +43,8 @@
 
 namespace maxSocket
 {
+namespace v0
+{
 
 	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW
 	{
@@ -88,10 +90,10 @@ namespace maxSocket
 	}
 
 	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
-	                                                            const AddressFamily::Enum AddressFamilyFilter,
-	                                                            std::vector< std::unique_ptr< IP::Address > > & EndPoints,
-	                                                            const int MaximumEndPointSanityCheck
-	                                                          ) MAX_DOES_NOT_THROW
+		                                                        const AddressFamily::Enum AddressFamilyFilter,
+		                                                        std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+		                                                        const int MaximumEndPointSanityCheck
+		                                                        ) MAX_DOES_NOT_THROW
 	{
 		ResolveHostNameImplementationInterface * SystemHostNameResolver = nullptr;
 
@@ -108,10 +110,10 @@ namespace maxSocket
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
-	                                                                          const unsigned short Port,
-	                                                                          const Protocol::Enum Protocol,
-	                                                                          std::unique_ptr< Socket > & CreatedSocket
-	                                                                        ) MAX_DOES_NOT_THROW
+		                                                                        const unsigned short Port,
+		                                                                        const Protocol::Enum Protocol,
+		                                                                        std::unique_ptr< Socket > & CreatedSocket
+		                                                                    ) MAX_DOES_NOT_THROW
 	{
 		auto AddressFamily = AF_INET;
 		switch( EndPoint.m_Version )
@@ -184,12 +186,12 @@ namespace maxSocket
 			{
 				AddressStorage.ss_family = PF_INET;
 				auto SocketAddress       = reinterpret_cast< sockaddr_in * >( & AddressStorage );
-				SocketAddress->sin_addr  = static_cast< const IP::AddressVersion4 * >( & EndPoint )->m_NativeAddressPolicy.m_Address;
+				SocketAddress->sin_addr  = static_cast< const maxSocket::IP::AddressVersion4 * >( & EndPoint )->m_NativeAddressPolicy.m_Address;
 				SocketAddress->sin_port  = htons( Port );
 			} else if( EndPoint.m_Version == IP::Version::Version6 ) {
 				AddressStorage.ss_family = PF_INET6;
 				auto SocketAddress       = reinterpret_cast< sockaddr_in6 * >( & AddressStorage );
-				SocketAddress->sin6_addr = static_cast< const IP::AddressVersion6 * >( & EndPoint )->m_NativeAddressPolicy.m_Address;
+				SocketAddress->sin6_addr = static_cast< const maxSocket::IP::AddressVersion6 * >( & EndPoint )->m_NativeAddressPolicy.m_Address;
 				SocketAddress->sin6_port = htons( Port );
 			}
 
@@ -213,7 +215,7 @@ namespace maxSocket
 				case WSAEADDRNOTAVAIL: // remote address is not valid
 					return CreateSocketAndConnectResults::RemoteAddressInvalid;
 				case WSAEAFNOSUPPORT: // address in specified family cannot be used
-				                      // (perhaps using an IPv6 address for an IPv4 family
+										// (perhaps using an IPv6 address for an IPv4 family
 					return CreateSocketAndConnectResults::LibraryError;
 				case WSAEHOSTUNREACH: // unreachable host
 					return CreateSocketAndConnectResults::HostUnreachable;
@@ -248,4 +250,5 @@ namespace maxSocket
 		return CreateSocketAndConnectResults::Success;
 	}
 
+} // namespace v0
 } // namespace maxSocket

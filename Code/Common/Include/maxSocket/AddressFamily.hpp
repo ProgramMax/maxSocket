@@ -30,9 +30,13 @@
 #ifndef MAXSOCKET_ADDRESSFAMILY_HPP
 #define MAXSOCKET_ADDRESSFAMILY_HPP
 
-namespace maxSocket
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
+namespace maxSocket
 {
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+{
+
 	namespace AddressFamily
 	{
 		enum Enum
@@ -44,6 +48,8 @@ namespace maxSocket
 
 	} // namespace AddressFamily
 
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // nameSpace maxSocket
 
 #endif // #ifndef MAXSOCKET_ADDRESSFAMILY_HPP

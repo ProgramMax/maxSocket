@@ -30,7 +30,11 @@
 #ifndef MAXSOCKET_IP_VERSION_HPP
 #define MAXSOCKET_IP_VERSION_HPP
 
+#include <max/Compiling/CurrentVersionNamespace.hpp>
+
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 namespace IP
 {
@@ -47,6 +51,8 @@ namespace IP
 	} // namespace Version
 
 } // namespace IP
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #endif // #ifndef MAXSOCKET_IP_VERSION_HPP

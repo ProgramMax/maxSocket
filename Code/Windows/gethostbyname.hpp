@@ -44,7 +44,7 @@ namespace maxSocket
 
 		MAX_OVERRIDE( ResolveHostNameResults::Enum ResolveHostName( const char * const HostName,
 		                                                            const AddressFamily::Enum AddressFamilyFilter,
-		                                                            std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+		                                                            std::vector< std::unique_ptr< v0::IP::Address > > & EndPoints,
 		                                                            const int MaximumEndPointSanityCheck
 		                                                          ) MAX_DOES_NOT_THROW );
 

@@ -36,8 +36,11 @@
 #endif // #ifndef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <string>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 namespace IP
 {
@@ -56,6 +59,8 @@ namespace IP
 	}; // class Address
 
 } // namespace IP
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #endif // #ifndef MAXSOCKET_IP_ADDRESS_HPP

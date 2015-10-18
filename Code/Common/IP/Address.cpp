@@ -32,6 +32,8 @@
 
 namespace maxSocket
 {
+namespace v0
+{
 namespace IP
 {
 
@@ -45,4 +47,5 @@ namespace IP
 	}
 
 } // namespace IP
+} // namespace v0
 } // namespace maxSocket

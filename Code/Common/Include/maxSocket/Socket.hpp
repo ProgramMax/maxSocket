@@ -39,13 +39,17 @@
 	#include "..\..\Windows\PrecompiledHeader.hpp"
 #endif // #ifdef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
 {
-	namespace IP
-	{
-		class Address;
-	} // namespace IP
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+{
+namespace IP
+{
+	class Address;
+} // namespace IP
+
 	class Buffer;
 
 	namespace DisconnectResults
@@ -115,6 +119,8 @@ namespace maxSocket
 
 	};
 
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #endif // #ifndef MAXSOCKET_SOCKET_HPP

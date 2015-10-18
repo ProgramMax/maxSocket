@@ -54,7 +54,7 @@ namespace maxSocket
 
 	ResolveHostNameResults::Enum getaddrinfo::ResolveHostName( char const * const HostName,
 	                                                           AddressFamily::Enum const AddressFamilyFilter,
-	                                                           std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+	                                                           std::vector< std::unique_ptr< v0::IP::Address > > & EndPoints,
 	                                                           const int MaximumEndPointSanityCheck
 	                                                         ) MAX_DOES_NOT_THROW
 	{
@@ -126,7 +126,7 @@ namespace maxSocket
 			auto CleanupWindowsEndPointList = max::Algorithms::MakeScopedFunctor( [FunctionPointers=this->FunctionPointers, WindowsEndPoints]() { FunctionPointers.freeaddrinfo( WindowsEndPoints ); } );
 			max::Compiling::UnreferencedValue( CleanupWindowsEndPointList );
 
-			std::vector< std::unique_ptr< IP::Address > > TemporaryEndPoints;
+			std::vector< std::unique_ptr< v0::IP::Address > > TemporaryEndPoints;
 
 		
 			auto RemainingEndPointsForSanityCheck = int{ MaximumEndPointSanityCheck };
@@ -140,10 +140,10 @@ namespace maxSocket
 				switch( CurrentWindowsEndPoint->ai_family )
 				{
 				case AF_INET:
-					TemporaryEndPoints.emplace_back( std::make_unique< IP::AddressVersion4 >( IP::WindowsAddressVersion4Policy( reinterpret_cast< sockaddr_in * >( CurrentWindowsEndPoint->ai_addr )->sin_addr ) ) );
+					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion4 >( maxSocket::IP::WindowsAddressVersion4Policy( reinterpret_cast< sockaddr_in * >( CurrentWindowsEndPoint->ai_addr )->sin_addr ) ) );
 					break;
 				case AF_INET6:
-					TemporaryEndPoints.emplace_back( std::make_unique< IP::AddressVersion6 >( IP::WindowsAddressVersion6Policy( reinterpret_cast< sockaddr_in6 * >( CurrentWindowsEndPoint->ai_addr )->sin6_addr ) ) );
+					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion6 >( maxSocket::IP::WindowsAddressVersion6Policy( reinterpret_cast< sockaddr_in6 * >( CurrentWindowsEndPoint->ai_addr )->sin6_addr ) ) );
 					break;
 				default:
 					// We encountered an unknown address family.

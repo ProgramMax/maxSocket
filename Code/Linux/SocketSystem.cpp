@@ -49,6 +49,8 @@
 
 namespace maxSocket
 {
+namespace v0
+{
 
 	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW
 	{
@@ -61,10 +63,10 @@ namespace maxSocket
 	}
 
 	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
-	                                                            const AddressFamily::Enum AddressFamilyFilter,
-	                                                            std::vector< std::unique_ptr< IP::Address > > & EndPoints,
-	                                                            const int MaximumEndPointSanityCheck
-	                                                          ) MAX_DOES_NOT_THROW
+		                                                        const AddressFamily::Enum AddressFamilyFilter,
+		                                                        std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+		                                                        const int MaximumEndPointSanityCheck
+		                                                        ) MAX_DOES_NOT_THROW
 	{
 		//
 		// Prepare parameters for the call to getaddrinfo.
@@ -150,10 +152,10 @@ namespace maxSocket
 				switch( CurrentLinuxEndPoint->ai_family )
 				{
 				case AF_INET:
-					TemporaryEndPoints.emplace_back( std::make_unique< IP::AddressVersion4 >( IP::LinuxAddressVersion4Policy( * reinterpret_cast< sockaddr_in * >( CurrentLinuxEndPoint->ai_addr ) ) ) );
+					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion4 >( maxSocket::IP::LinuxAddressVersion4Policy( * reinterpret_cast< sockaddr_in * >( CurrentLinuxEndPoint->ai_addr ) ) ) );
 					break;
 				case AF_INET6:
-					TemporaryEndPoints.emplace_back( std::make_unique< IP::AddressVersion6 >( IP::LinuxAddressVersion6Policy( * reinterpret_cast< sockaddr_in6 *>( CurrentLinuxEndPoint->ai_addr ) ) ) );
+					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion6 >( maxSocket::IP::LinuxAddressVersion6Policy( * reinterpret_cast< sockaddr_in6 *>( CurrentLinuxEndPoint->ai_addr ) ) ) );
 					break;
 
 				default:
@@ -169,10 +171,10 @@ namespace maxSocket
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
-	                                                                          const unsigned short Port,
-	                                                                          const Protocol::Enum Protocol,
-	                                                                          std::unique_ptr< Socket > & CreatedSocket
-	                                                                        ) MAX_DOES_NOT_THROW
+		                                                                        const unsigned short Port,
+		                                                                        const Protocol::Enum Protocol,
+		                                                                        std::unique_ptr< Socket > & CreatedSocket
+		                                                                    ) MAX_DOES_NOT_THROW
 	{
 		auto AddressFamily = PF_INET;
 		switch( EndPoint.m_Version )
@@ -237,7 +239,7 @@ namespace maxSocket
 			{
 			case IP::Version::Version4:
 				{
-					auto Version4Address    = reinterpret_cast< const IP::AddressVersion4 * >( & EndPoint );
+					auto Version4Address    = reinterpret_cast< const maxSocket::IP::AddressVersion4 * >( & EndPoint );
 					auto LinuxAddress       = Version4Address->m_NativeAddressPolicy.m_Address;
  					LinuxAddress.sin_family = AF_INET;
 					LinuxAddress.sin_port   = htons( Port );
@@ -247,7 +249,7 @@ namespace maxSocket
 				break;
 			case IP::Version::Version6:
 				{
-					auto Version6Address     = reinterpret_cast< const IP::AddressVersion6 * >( & EndPoint );
+					auto Version6Address     = reinterpret_cast< const maxSocket::IP::AddressVersion6 * >( & EndPoint );
 					auto LinuxAddress        = Version6Address->m_NativeAddressPolicy.m_Address;
 					LinuxAddress.sin6_family = AF_INET6;
 					LinuxAddress.sin6_port   = Port;
@@ -275,15 +277,15 @@ namespace maxSocket
 				case EPROTOTYPE:    // The specified address has a different type than the socket bound to the specified peer address.
 				case EINVAL:        // The address_len argument is not a valid length for the address family; or invalid address family in the sockaddr structure.
 				case ENAMETOOLONG:  // A component of a pathname exceeded {NAME_MAX} characters, or an entire pathname exceeded {PATH_MAX} characters.
-				                    // This error can also match this case:
-				                    // Pathname resolution of a symbolic link produced an intermediate result whose length exceeds {PATH_MAX}.
+									// This error can also match this case:
+									// Pathname resolution of a symbolic link produced an intermediate result whose length exceeds {PATH_MAX}.
 				case ENOENT:        // A component of the pathname does not name an existing file or the pathname is an empty string.
 				case ENOTDIR:       // A component of the path prefix of the pathname in address is not a directory.
 				case EACCES:        // Search permission is deined for a component of the path prefix; or write access to the named socket is denied.
 				case EADDRINUSE:    // Attempt to establish a connection that uses addresses that are already in use.
 				case ELOOP:         // More than {SYMLOOP_MAX} symbolic links were encountered during resolution of the pathname in address.
-				                    // This error can also match this case:
-				                    // A loop exists in symbolic links encountered during resolution of the pathname in address.
+									// This error can also match this case:
+									// A loop exists in symbolic links encountered during resolution of the pathname in address.
 				case EOPNOTSUPP:    // The socket is listening and cannot be connected.
 					return CreateSocketAndConnectResults::LibraryError;
 				case ECONNREFUSED:  // The target address was not listening for connections or refused the connection request.
@@ -337,4 +339,5 @@ namespace maxSocket
 		return CreateSocketAndConnectResults::Success;
 	}
 
+} // namespace v0
 } // namespace maxSocket

@@ -33,8 +33,11 @@
 #include "..\Common\IP\AddressVersion4.hpp"
 #include "..\Common\IP\AddressVersion6.hpp"
 #include <maxSocket/Buffer.hpp>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+namespace v0
 {
 
 	Socket::Socket( SOCKET NativeSocket ) MAX_DOES_NOT_THROW
@@ -228,4 +231,5 @@ namespace maxSocket
 		return Returning;
 	}
 
+} // namespace v0
 } // namespace maxSocket

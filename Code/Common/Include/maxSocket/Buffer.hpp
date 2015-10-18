@@ -37,8 +37,11 @@
 	#include "PrecompiledHeader.hpp"
 #endif
 #include <max/Compiling/ThrowSpecification.hpp>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 
 	class Buffer
@@ -53,6 +56,8 @@ namespace maxSocket
 
 	}; // class Buffer
 
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #endif // #ifndef MAXSOCKET_BUFFER_HPP

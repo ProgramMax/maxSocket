@@ -40,6 +40,8 @@
 
 namespace maxSocket
 {
+namespace v0
+{
 
 	Socket::~Socket() MAX_DOES_NOT_THROW
 	{
@@ -94,4 +96,5 @@ namespace maxSocket
 	{
 	}
 
+} // namespace v0
 } // namespace maxSocket

@@ -60,7 +60,7 @@ namespace IP
 	#endif
 
 	template< typename NativeAddressPolicy >
-	class PlatformIndependentAddressVersion6 : public Address
+	class PlatformIndependentAddressVersion6 : public v0::IP::Address
 	{
 	public:
 

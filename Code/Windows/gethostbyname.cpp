@@ -44,7 +44,7 @@ namespace maxSocket
 
 	ResolveHostNameResults::Enum gethostbyname::ResolveHostName( char const * const HostName,
 	                                                             AddressFamily::Enum const AddressFamilyFilter,
-	                                                             std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+	                                                             std::vector< std::unique_ptr< v0::IP::Address > > & EndPoints,
 	                                                             const int MaximumEndPointSanityCheck
 	                                                           ) MAX_DOES_NOT_THROW
 	{
@@ -84,7 +84,7 @@ namespace maxSocket
 		//
 		// Make the call to getaddrinfo.
 		//
-		std::vector< std::unique_ptr< IP::Address > > TemporaryEndPoints;
+		std::vector< std::unique_ptr< v0::IP::Address > > TemporaryEndPoints;
 
 
 		for( auto Index = int{ 0 }; HostEntry->h_addr_list[ Index ] != NULL; Index++ )
@@ -96,7 +96,7 @@ namespace maxSocket
 
 			if( HostEntry->h_addrtype == AF_INET )
 			{
-				TemporaryEndPoints.emplace_back( std::make_unique< IP::AddressVersion4 >( IP::WindowsAddressVersion4Policy( * reinterpret_cast< in_addr * >( HostEntry->h_addr_list[ Index ] ) ) ) );
+				TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion4 >(maxSocket::IP::WindowsAddressVersion4Policy( * reinterpret_cast< in_addr * >( HostEntry->h_addr_list[ Index ] ) ) ) );
 			} else {
 				// We encountered an unknown address family.
 				return ResolveHostNameResults::EncounteredAnUnknownAddressFamily;

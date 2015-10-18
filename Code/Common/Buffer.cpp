@@ -29,8 +29,11 @@
 
 #include "PrecompiledHeader.hpp"
 #include <maxSocket/Buffer.hpp>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+namespace v0
 {
 
 	Buffer::Buffer( std::unique_ptr< uint8_t[] > && Data, const size_t UsedSize, const size_t TotalSize ) MAX_DOES_NOT_THROW
@@ -40,4 +43,5 @@ namespace maxSocket
 	{
 	}
 
+} // namespace v0
 } // namespace maxSocket

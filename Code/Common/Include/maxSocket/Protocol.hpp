@@ -30,7 +30,11 @@
 #ifndef MAXSOCKET_PROTOCOL_HPP
 #define MAXSOCKET_PROTOCOL_HPP
 
+#include <max/Compiling/CurrentVersionNamespace.hpp>
+
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 
 	namespace Protocol
@@ -44,6 +48,8 @@ namespace maxSocket
 
 	} // namespace Protocol
 
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #endif // #ifndef MAXSOCKET_PROTOCOL_HPP
