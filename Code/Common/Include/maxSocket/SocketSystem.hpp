@@ -93,7 +93,7 @@ namespace maxSocket
 			LibraryError,
 			SystemError,
 			UnknownError
-		};
+		}; // enum Enum
 	} // namespace CreateSocketResults
 
 	class Socket;
