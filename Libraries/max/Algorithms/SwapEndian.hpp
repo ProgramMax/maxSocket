@@ -38,10 +38,10 @@ namespace max
 namespace Algorithms
 {
 
-	Pure( inline unsigned int SwapEndian( unsigned int Value ) NO_THROW );
-	Pure( inline unsigned short SwapEndian( unsigned short Value ) NO_THROW );
-	Pure( inline unsigned int SwapEndian( int Value ) NO_THROW );
-	Pure( inline unsigned short SwapEndian( short Value ) NO_THROW );
+	Pure( inline unsigned int   SwapEndian( unsigned int Value   ) MAX_DOES_NOT_THROW );
+	Pure( inline unsigned short SwapEndian( unsigned short Value ) MAX_DOES_NOT_THROW );
+	Pure( inline unsigned int   SwapEndian( int Value            ) MAX_DOES_NOT_THROW );
+	Pure( inline unsigned short SwapEndian( short Value          ) MAX_DOES_NOT_THROW );
 
 } // namespace Algorithms
 } // namespace max

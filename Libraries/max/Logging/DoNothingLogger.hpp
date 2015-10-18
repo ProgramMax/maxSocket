@@ -30,7 +30,6 @@
 #ifndef MAX_LOGGING_DONOTHINGLOGGER_HPP
 #define MAX_LOGGING_DONOTHINGLOGGER_HPP
 
-#include <string>
 #include <max/Compiling/ThrowSpecification.hpp>
 
 namespace max
@@ -42,16 +41,14 @@ namespace Logging
 	{
 	public:
 
-		void LogInfo(    const std::wstring & Info    ) MAX_DOES_NOT_THROW;
-		void LogDebug(   const std::wstring & Debug   ) MAX_DOES_NOT_THROW;
-		void LogWarning( const std::wstring & Warning ) MAX_DOES_NOT_THROW;
-		void LogError(   const std::wstring & Error   ) MAX_DOES_NOT_THROW;
+		void LogInfo(    const wchar_t * Info    ) MAX_DOES_NOT_THROW;
+		void LogDebug(   const wchar_t * Debug   ) MAX_DOES_NOT_THROW;
+		void LogWarning( const wchar_t * Warning ) MAX_DOES_NOT_THROW;
+		void LogError(   const wchar_t * Error   ) MAX_DOES_NOT_THROW;
 
 	};
 
 } // namespace Logging
 } // namespace max
-
-#include "DoNothingLogger.inl"
 
 #endif
