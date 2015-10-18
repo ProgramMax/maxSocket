@@ -30,6 +30,8 @@
 #ifndef MAX_TESTING_TEST_HPP
 #define MAX_TESTING_TEST_HPP
 
+#include <string>
+
 namespace max
 {
 namespace Testing
@@ -46,7 +48,7 @@ namespace Testing
 		{
 		}
 
-		const wchar_t * Name;
+		const std::wstring Name;
 		Functor TestFunction;
 
 	};

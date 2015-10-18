@@ -27,23 +27,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAX_ALGORITHMS_YEILD_HPP
-#define MAX_ALGORITHMS_YEILD_HPP
+#ifndef MAX_COMPILING_CONFIGURATION_COMPILER_CLANG_HPP
+#define MAX_COMPILING_CONFIGURATION_COMPILER_CLANG_HPP
 
-#include <max/Compiling/Configuration/Compiler.hpp>
+#define MAX_COMPILER_CLANG
 
-#ifdef MAX_COMPILER_VC
-	#ifdef MAX_IA64
-		#include <intrin.h>
-		#define MAX_YEILD __yeild()
-	#else
-		// This is only supported on SSE machines
-		// But earlier machines generate a nop which means we don't need to test for SSE support
-		#include <xmmintrin.h>
-		#define MAX_YEILD _mm_pause()
-	#endif
-#else
-	#define MAX_YEILD
-#endif
-
-#endif // #ifndef MAX_ALGORITHMS_YEILD_HPP
+#endif // #ifndef MAX_COMPILING_CONFIGURATION_COMPILER_CLANG_HPP

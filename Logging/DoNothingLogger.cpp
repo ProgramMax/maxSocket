@@ -27,24 +27,26 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include "DoNothingLogger.hpp"
+
 namespace max
 {
 namespace Logging
 {
 
-	void DoNothingLogger::LogInfo( const std::wstring & Info ) MAX_DOES_NOT_THROW
+	void DoNothingLogger::LogInfo( const wchar_t * Info ) MAX_DOES_NOT_THROW
 	{
 	}
 
-	void DoNothingLogger::LogDebug( const std::wstring & Debug ) MAX_DOES_NOT_THROW
+	void DoNothingLogger::LogDebug( const wchar_t * Debug ) MAX_DOES_NOT_THROW
 	{
 	}
 
-	void DoNothingLogger::LogWarning( const std::wstring & Warning ) MAX_DOES_NOT_THROW
+	void DoNothingLogger::LogWarning( const wchar_t * Warning ) MAX_DOES_NOT_THROW
 	{
 	}
 
-	void DoNothingLogger::LogError( const std::wstring & Error ) MAX_DOES_NOT_THROW
+	void DoNothingLogger::LogError( const wchar_t * Error ) MAX_DOES_NOT_THROW
 	{
 	}
 

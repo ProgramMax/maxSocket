@@ -32,22 +32,22 @@ namespace max
 namespace Algirhtms
 {
 
-	inline unsigned int SwapEndian( unsigned int Value )
+	inline unsigned int SwapEndian( unsigned int Value ) MAX_DOES_NOT_THROW
 	{
 		return ( ( ( Value & 0xff000000 ) >> 24 ) | ( ( Value & 0x00ff0000 ) >> 8 ) | ( ( Value & 0x0000ff00 ) << 8 )  | ( ( Value & 0x000000ff ) << 24 ) );
 	}
 
-	inline unsigned short SwapEndian( unsigned short Value )
+	inline unsigned short SwapEndian( unsigned short Value ) MAX_DOES_NOT_THROW
 	{
 		return static_cast< unsigned short >( ( ( Value & 0xff00 ) >> 8 ) | ( ( Value & 0x00ff ) << 8 ) );
 	}
 
-	inline int SwapEndian( int Value )
+	inline int SwapEndian( int Value ) MAX_DOES_NOT_THROW
 	{
 		return SwapEndian( reinterpret_cast< unsigned int >( Value ) );
 	}
 
-	inline short SwapEndian( short Value )
+	inline short SwapEndian( short Value ) MAX_DOES_NOT_THROW
 	{
 		return SwapEndian( reinterpret_cast< unsigned short >( Value ) );
 	}
