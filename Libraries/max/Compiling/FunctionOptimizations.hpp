@@ -110,4 +110,3 @@
 #endif
 
 #endif // #ifndef MAX_COMPILING_FUNCTIONOPTIMIZATIONS_HPP
-
