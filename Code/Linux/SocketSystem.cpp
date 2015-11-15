@@ -63,10 +63,10 @@ namespace v0
 	}
 
 	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
-		                                                        const AddressFamily::Enum AddressFamilyFilter,
-		                                                        std::vector< std::unique_ptr< IP::Address > > & EndPoints,
-		                                                        const int MaximumEndPointSanityCheck
-		                                                        ) MAX_DOES_NOT_THROW
+	                                                            const AddressFamily::Enum AddressFamilyFilter,
+	                                                            std::vector< std::unique_ptr< IP::Address > > & EndPoints,
+	                                                            const int MaximumEndPointSanityCheck
+	                                                          ) MAX_DOES_NOT_THROW
 	{
 		//
 		// Prepare parameters for the call to getaddrinfo.
@@ -171,10 +171,10 @@ namespace v0
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
-		                                                                        const unsigned short Port,
-		                                                                        const Protocol::Enum Protocol,
-		                                                                        std::unique_ptr< Socket > & CreatedSocket
-		                                                                    ) MAX_DOES_NOT_THROW
+	                                                                          const unsigned short Port,
+	                                                                          const Protocol::Enum Protocol,
+	                                                                          std::unique_ptr< Socket > & CreatedSocket
+	                                                                        ) MAX_DOES_NOT_THROW
 	{
 		auto AddressFamily = PF_INET;
 		switch( EndPoint.m_Version )
