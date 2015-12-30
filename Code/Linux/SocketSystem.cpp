@@ -44,8 +44,6 @@
 #include <max/Algorithms/ScopedFunctor.hpp>
 #include <max/Compiling/UnreferencedValue.hpp>
 #include <unistd.h>
-#include "LinuxAddressVersion4Policy.hpp"
-#include "LinuxAddressVersion6Policy.hpp"
 
 namespace maxSocket
 {
@@ -64,8 +62,7 @@ namespace v0
 
 	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
 	                                                            const AddressFamily::Enum AddressFamilyFilter,
-	                                                            std::vector< std::unique_ptr< IP::Address > > & EndPoints,
-	                                                            const int MaximumEndPointSanityCheck
+	                                                            IP::Addresses & EndPoints
 	                                                          ) MAX_DOES_NOT_THROW
 	{
 		//
@@ -132,42 +129,10 @@ namespace v0
 
 
 
-		//
-		// Parse the results of the call to getaddrinfo.
-		//
-		{
-			auto CleanupLinuxEndPointList = max::Algorithms::MakeScopedFunctor( [ LinuxEndPoints ]() { freeaddrinfo( LinuxEndPoints ); } );
-			max::Compiling::UnreferencedValue( CleanupLinuxEndPointList );
 
-			std::vector< std::unique_ptr< IP::Address > > TemporaryEndPoints;
+		EndPoints = IP::Addresses( LinuxEndPoints );
 
-			auto RemainingEndPointsForSanityCheck = int{ MaximumEndPointSanityCheck };
-			for( auto CurrentLinuxEndPoint = LinuxEndPoints; CurrentLinuxEndPoint != NULL; CurrentLinuxEndPoint = CurrentLinuxEndPoint->ai_next )
-			{
-				if( RemainingEndPointsForSanityCheck-- == 0 )
-				{
-					return ResolveHostNameResults::ExceededMaximumEndPointSanityCheck;
-				}
-
-				switch( CurrentLinuxEndPoint->ai_family )
-				{
-				case AF_INET:
-					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion4 >( maxSocket::IP::LinuxAddressVersion4Policy( * reinterpret_cast< sockaddr_in * >( CurrentLinuxEndPoint->ai_addr ) ) ) );
-					break;
-				case AF_INET6:
-					TemporaryEndPoints.emplace_back( std::make_unique< maxSocket::IP::AddressVersion6 >( maxSocket::IP::LinuxAddressVersion6Policy( * reinterpret_cast< sockaddr_in6 *>( CurrentLinuxEndPoint->ai_addr ) ) ) );
-					break;
-
-				default:
-					// We encountered an unknown address family.
-					return ResolveHostNameResults::EncounteredAnUnknownAddressFamily;
-				}
-			}
-
-			std::swap( EndPoints, TemporaryEndPoints );
-
-			return ResolveHostNameResults::Success;
-		}
+		return ResolveHostNameResults::Success;
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
@@ -239,8 +204,7 @@ namespace v0
 			{
 			case IP::Version::Version4:
 				{
-					auto Version4Address    = reinterpret_cast< const maxSocket::IP::AddressVersion4 * >( & EndPoint );
-					auto LinuxAddress       = Version4Address->m_NativeAddressPolicy.m_Address;
+					auto LinuxAddress       = EndPoint.AddressRepresentation.Version4Address.NativeIPVersion4Address;
  					LinuxAddress.sin_family = AF_INET;
 					LinuxAddress.sin_port   = htons( Port );
 					Address                 = reinterpret_cast< sockaddr * >( & LinuxAddress );
@@ -249,8 +213,7 @@ namespace v0
 				break;
 			case IP::Version::Version6:
 				{
-					auto Version6Address     = reinterpret_cast< const maxSocket::IP::AddressVersion6 * >( & EndPoint );
-					auto LinuxAddress        = Version6Address->m_NativeAddressPolicy.m_Address;
+					auto LinuxAddress        = EndPoint.AddressRepresentation.Version6Address.NativeIPVersion6Address;
 					LinuxAddress.sin6_family = AF_INET6;
 					LinuxAddress.sin6_port   = Port;
 					Address                  = reinterpret_cast< sockaddr * >( & LinuxAddress );

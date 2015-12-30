@@ -27,6 +27,9 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include "PrecompiledHeader.hpp"
+#include <maxSocket/IP/Addresses.hpp>
+
 namespace maxSocket
 {
 namespace v0
@@ -34,22 +37,45 @@ namespace v0
 namespace IP
 {
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::PlatformIndependentAddressVersion6( NativeAddressPolicy policy ) MAX_DOES_NOT_THROW
-		: v0::IP::Address( v0::IP::Version::Version6 ),
-		m_NativeAddressPolicy( policy )
+	Addresses::Addresses() MAX_DOES_NOT_THROW
+		: LinuxEndPoints( NULL )
 	{
 	}
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::~PlatformIndependentAddressVersion6() MAX_DOES_NOT_THROW
+	Addresses::Addresses( Addresses && rhs ) MAX_DOES_NOT_THROW
+		: LinuxEndPoints( rhs.LinuxEndPoints )
+	{
+		rhs.LinuxEndPoints = NULL;
+	}
+
+	Addresses::Addresses( addrinfo * LinuxEndPoints ) MAX_DOES_NOT_THROW
+		: LinuxEndPoints( LinuxEndPoints )
 	{
 	}
 
-	template< typename NativeAddressPolicy >
-	std::string PlatformIndependentAddressVersion6< NativeAddressPolicy >::GetRepresentation() const MAX_DOES_NOT_THROW
+	Addresses::~Addresses() MAX_DOES_NOT_THROW
 	{
-		return m_NativeAddressPolicy.GetRepresentation();
+		if( LinuxEndPoints != NULL )
+		{
+			freeaddrinfo( LinuxEndPoints );
+		}
+	}
+
+	Addresses & Addresses::operator =( Addresses && rhs ) MAX_DOES_NOT_THROW
+	{
+		LinuxEndPoints = rhs.LinuxEndPoints;
+		rhs.LinuxEndPoints = NULL;
+		return *this;
+	}
+
+	AddressesIterator Addresses::begin() MAX_DOES_NOT_THROW
+	{
+		return AddressesIterator( LinuxEndPoints );
+	}
+
+	AddressesIterator Addresses::end() MAX_DOES_NOT_THROW
+	{
+		return AddressesIterator( NULL );
 	}
 
 } // namespace IP

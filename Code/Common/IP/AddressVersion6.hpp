@@ -43,8 +43,11 @@
 #if defined(MAX_PLATFORM_LINUX)
 	#include "../../Linux/LinuxAddressVersion6Policy.hpp"
 #endif
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 namespace IP
 {
@@ -67,13 +70,15 @@ namespace IP
 		explicit PlatformIndependentAddressVersion6( NativeAddressPolicy policy ) MAX_DOES_NOT_THROW;
 		MAX_OVERRIDE( ~PlatformIndependentAddressVersion6() MAX_DOES_NOT_THROW );
 
-		MAX_OVERRIDE( std::string GetRepresentation() MAX_DOES_NOT_THROW );
+		MAX_OVERRIDE( std::string GetRepresentation() const MAX_DOES_NOT_THROW );
 
 		NativeAddressPolicy m_NativeAddressPolicy;
 
 	}; // class PlatformIndependentAddressVersion6
 
 } // namespace IP
+} // MAX_CURRENT_VERSION_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
 
 #include "AddressVersion6.inl"

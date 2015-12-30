@@ -27,6 +27,12 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include "PrecompiledHeader.hpp"
+#include <maxSocket/IP/AddressesIterator.hpp>
+#include <maxSocket/IP/Address.hpp>
+#include <maxSocket/IP/AddressVersion4.hpp>
+#include <maxSocket/IP/AddressVersion6.hpp>
+
 namespace maxSocket
 {
 namespace v0
@@ -34,22 +40,46 @@ namespace v0
 namespace IP
 {
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::PlatformIndependentAddressVersion6( NativeAddressPolicy policy ) MAX_DOES_NOT_THROW
-		: v0::IP::Address( v0::IP::Version::Version6 ),
-		m_NativeAddressPolicy( policy )
+	AddressesIterator & AddressesIterator::operator ++()
 	{
+		CurrentLinuxEndPoint = CurrentLinuxEndPoint->ai_next;
+		return *this;
 	}
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::~PlatformIndependentAddressVersion6() MAX_DOES_NOT_THROW
+	AddressesIterator AddressesIterator::operator ++( int )
 	{
+		AddressesIterator Temp( *this );
+		operator++();
+		return Temp;
 	}
 
-	template< typename NativeAddressPolicy >
-	std::string PlatformIndependentAddressVersion6< NativeAddressPolicy >::GetRepresentation() const MAX_DOES_NOT_THROW
+	bool AddressesIterator::operator ==( const AddressesIterator & rhs ) const
 	{
-		return m_NativeAddressPolicy.GetRepresentation();
+		return CurrentLinuxEndPoint == rhs.CurrentLinuxEndPoint;
+	}
+
+	bool AddressesIterator::operator !=( const AddressesIterator & rhs ) const
+	{
+		return CurrentLinuxEndPoint != rhs.CurrentLinuxEndPoint;
+	}
+
+	maxSocket::v0::IP::Address AddressesIterator::operator *() const
+	{
+		switch( CurrentLinuxEndPoint->ai_family )
+		{
+		case AF_INET:
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion4( * reinterpret_cast< sockaddr_in * >( CurrentLinuxEndPoint->ai_addr ) ) );
+		case AF_INET6:
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion6( * reinterpret_cast< sockaddr_in6 * >( CurrentLinuxEndPoint->ai_addr ) ) );
+		default:
+			// We encountered an unknown address family.
+			throw;
+		}
+	}
+
+	AddressesIterator::AddressesIterator( addrinfo * const CurrentLinuxEndPoint )
+		: CurrentLinuxEndPoint( CurrentLinuxEndPoint )
+	{
 	}
 
 } // namespace IP

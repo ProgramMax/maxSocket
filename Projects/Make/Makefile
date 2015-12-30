@@ -5,10 +5,12 @@ CXX_SRCS = \
 	$(CODE_DIRECTORY)/Common/Buffer.cpp \
 	$(CODE_DIRECTORY)/Linux/Socket.cpp \
 	$(CODE_DIRECTORY)/Common/IP/Address.cpp \
-	$(CODE_DIRECTORY)/../Tests/UnitTests.cpp \
-	$(CODE_DIRECTORY)/Linux/SocketSystem.cpp \
-	$(CODE_DIRECTORY)/Linux/LinuxAddressVersion4Policy.cpp \
-	$(CODE_DIRECTORY)/Linux/LinuxAddressVersion6Policy.cpp
+	$(CODE_DIRECTORY)/../Tests/TestResolveHostName.cpp \
+	$(CODE_DIRECTORY)/Linux/Addresses.cpp \
+	$(CODE_DIRECTORY)/Linux/AddressesIterator.cpp \
+	$(CODE_DIRECTORY)/Linux/AddressVersion4.cpp \
+	$(CODE_DIRECTORY)/Linux/AddressVersion6.cpp \
+	$(CODE_DIRECTORY)/Linux/SocketSystem.cpp
 CXX_OBJS = $(CXX_SRCS:.cpp=.o)
 INCLUDE_PATHS = \
 	$(CODE_DIRECTORY)/Common \

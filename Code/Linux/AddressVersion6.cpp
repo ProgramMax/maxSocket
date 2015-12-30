@@ -27,6 +27,12 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include "PrecompiledHeader.hpp"
+#include <maxSocket/IP/AddressVersion6.hpp>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+
 namespace maxSocket
 {
 namespace v0
@@ -34,22 +40,16 @@ namespace v0
 namespace IP
 {
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::PlatformIndependentAddressVersion6( NativeAddressPolicy policy ) MAX_DOES_NOT_THROW
-		: v0::IP::Address( v0::IP::Version::Version6 ),
-		m_NativeAddressPolicy( policy )
+	AddressVersion6::AddressVersion6( const NativeIPVersion6AddressType NativeIPVersion6Address ) MAX_DOES_NOT_THROW
+		: NativeIPVersion6Address( NativeIPVersion6Address )
 	{
 	}
 
-	template< typename NativeAddressPolicy >
-	PlatformIndependentAddressVersion6< NativeAddressPolicy >::~PlatformIndependentAddressVersion6() MAX_DOES_NOT_THROW
+	std::string AddressVersion6::GetRepresentation() const MAX_DOES_NOT_THROW
 	{
-	}
-
-	template< typename NativeAddressPolicy >
-	std::string PlatformIndependentAddressVersion6< NativeAddressPolicy >::GetRepresentation() const MAX_DOES_NOT_THROW
-	{
-		return m_NativeAddressPolicy.GetRepresentation();
+		auto & Address = NativeIPVersion6Address.sin6_addr;
+		char str[ INET6_ADDRSTRLEN ];
+		return std::string( inet_ntop( AF_INET6, & Address, str, INET6_ADDRSTRLEN ) );
 	}
 
 } // namespace IP

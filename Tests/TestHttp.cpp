@@ -47,7 +47,7 @@ int main()
 	}
 
 
-	auto EndPoints = std::vector< std::unique_ptr< maxSocket::IP::Address > >{};
+	auto EndPoints = maxSocket::v0::IP::Addresses{};
 
 	auto ResolveHostNameResults = SocketSystem->ResolveHostName( "google.com", maxSocket::AddressFamily::IPv4, EndPoints );
 	if( ResolveHostNameResults != maxSocket::ResolveHostNameResults::Success )
@@ -56,7 +56,7 @@ int main()
 		return -1;
 	}
 
-	if( EndPoints.size() == 0 )
+	if( EndPoints.begin() == EndPoints.end() )
 	{
 		std::cout << "Error\n";
 		return -1;
@@ -65,8 +65,10 @@ int main()
 	{
 		// Make a nested scope because the socket should be destroyed before the socket system is
 
+		auto FirstEndPoint = * EndPoints.begin();
+		
 		auto Socket = std::unique_ptr< maxSocket::Socket >{};
-		auto CreateSocketResult = SocketSystem->CreateSocketAndConnect( * EndPoints[ 0 ].get(), 80, maxSocket::Protocol::TCP, Socket );
+		auto CreateSocketResult = SocketSystem->CreateSocketAndConnect( FirstEndPoint, 80, maxSocket::Protocol::TCP, Socket );
 		if( CreateSocketResult != maxSocket::CreateSocketAndConnectResults::Success )
 		{
 			std::cout << "Error\n";

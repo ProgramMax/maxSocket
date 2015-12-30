@@ -30,7 +30,6 @@
 #include "PrecompiledHeader.hpp"
 #include <maxSocket/SocketSystem.hpp>
 #include <iostream>
-#include <vector>
 #include <memory>
 #include <maxSocket/IP/Address.hpp>
 
@@ -45,7 +44,7 @@ int main()
 	}
 
 
-	auto EndPoints = std::vector< std::unique_ptr< maxSocket::IP::Address > >{};
+	auto EndPoints = maxSocket::v0::IP::Addresses{};
 
 	auto ResolveHostNameResult = SocketSystem->ResolveHostName( "google.com", maxSocket::AddressFamily::Any, EndPoints );
 	if( ResolveHostNameResult != maxSocket::ResolveHostNameResults::Success )
@@ -54,9 +53,9 @@ int main()
 		return -1;
 	}
 
-	for( auto& EndPoint : EndPoints )
+	for( const auto& EndPoint : EndPoints )
 	{
-		std::cout << "EndPoint: " << EndPoint->GetRepresentation() << "\n";
+		std::cout << "EndPoint: " << EndPoint.GetRepresentation() << "\n";
 	}
 
 	return 0;

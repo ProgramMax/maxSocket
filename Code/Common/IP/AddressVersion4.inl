@@ -29,6 +29,8 @@
 
 namespace maxSocket
 {
+namespace v0
+{
 namespace IP
 {
 
@@ -45,10 +47,11 @@ namespace IP
 	}
 
 	template< typename NativeAddressPolicy >
-	std::string PlatformIndependentAddressVersion4< NativeAddressPolicy >::GetRepresentation() MAX_DOES_NOT_THROW
+	std::string PlatformIndependentAddressVersion4< NativeAddressPolicy >::GetRepresentation() const MAX_DOES_NOT_THROW
 	{
 		return m_NativeAddressPolicy.GetRepresentation();
 	}
 
 } // namespace IP
+} // namespace v0
 } // namespace maxSocket

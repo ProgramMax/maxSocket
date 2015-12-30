@@ -25,27 +25,57 @@
 // DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITIY OF SUCH DAMAGE.
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "PrecompiledHeader.hpp"
-#include "LinuxAddressVersion6Policy.hpp"
+#ifndef MAXSOCKET_ADDRESSESITERATOR_HPP
+#define MAXSOCKET_ADDRESSESITERATOR_HPP
+
+#include <iterator>
+#include <memory>
+#include <maxSocket/IP/Address.hpp>
+#include <netdb.h>
+//#include <arpa/inet.h>
+#include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 namespace IP
 {
 
-	LinuxAddressVersion6Policy::LinuxAddressVersion6Policy( sockaddr_in6 Address ) MAX_DOES_NOT_THROW
-		: m_Address( Address )
+	class AddressesIterator : public std::iterator< std::forward_iterator_tag, std::unique_ptr< maxSocket::IP::Address > >
 	{
-	}
+	public:
 
-	std::string LinuxAddressVersion6Policy::GetRepresentation() MAX_DOES_NOT_THROW
-	{
-		auto& Address = m_Address.sin6_addr;
-		char str[ INET6_ADDRSTRLEN ];
-		return std::string( inet_ntop( AF_INET6, & Address, str, INET6_ADDRSTRLEN ) );
-	}
+		AddressesIterator() = delete;
+		AddressesIterator( const AddressesIterator & rhs ) = default;
+		AddressesIterator( AddressesIterator && rhs )      = default;
+
+		AddressesIterator & operator =( const AddressesIterator & rhs ) = default;
+		AddressesIterator & operator =( AddressesIterator && rhs )      = default;
+
+		AddressesIterator & operator ++();
+		AddressesIterator   operator ++( int );
+
+		bool operator ==( const AddressesIterator & rhs ) const;
+		bool operator !=( const AddressesIterator & rhs ) const;
+
+		maxSocket::v0::IP::Address operator *() const;
+
+	private:
+
+		friend class Addresses;
+
+		explicit AddressesIterator( addrinfo * const CurrentLinuxEndPoint );
+
+		addrinfo * CurrentLinuxEndPoint;
+
+	}; // class AddressesIterator
 
 } // namespace IP
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
+
+#endif // #ifndef MAXSOCKET_ADDRESSESITERATOR_HPP

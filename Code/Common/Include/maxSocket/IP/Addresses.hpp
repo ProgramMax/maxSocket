@@ -27,37 +27,45 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAXSOCKET_IP_LINUXADDRESSVERSION6POLICY_HPP
-#define MAXSOCKET_IP_LINUXADDRESSVERSION6POLICY_HPP
-
-#ifdef NO_PRECOMPILED_HEADER
-	#include <max/Compiling/ThrowSpecification.hpp>
-	#include <string>
-	#include <sys/socket.h>
-	#include <netdb.h>
-	#include <arpa/inet.h>
-#else
-	#include "PrecompiledHeader.hpp"
-#endif
+#include "PrecompiledHeader.hpp"
+#include <max/Compiling/CurrentVersionNamespace.hpp>
+#include "AddressesIterator.hpp"
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <unistd.h>
 
 namespace maxSocket
+{
+MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 {
 namespace IP
 {
 
-	class LinuxAddressVersion6Policy
+	class Addresses
 	{
 	public:
 
-		explicit LinuxAddressVersion6Policy( sockaddr_in6 Address ) MAX_DOES_NOT_THROW;
+		Addresses() MAX_DOES_NOT_THROW;
+		Addresses( const Addresses & rhs ) MAX_DOES_NOT_THROW = delete;
+		Addresses( Addresses && rhs ) MAX_DOES_NOT_THROW;
+		explicit Addresses( addrinfo * LinuxEndPoints ) MAX_DOES_NOT_THROW;
 
-		std::string GetRepresentation() MAX_DOES_NOT_THROW;
+		~Addresses() MAX_DOES_NOT_THROW;
 
-		sockaddr_in6 m_Address;
+		Addresses & operator =( const Addresses & rhs ) MAX_DOES_NOT_THROW = delete;
+		Addresses & operator =( Addresses && rhs ) MAX_DOES_NOT_THROW;
 
-	}; // class LinuxAddressVersion6Policy
+		AddressesIterator begin() MAX_DOES_NOT_THROW;
+		AddressesIterator end() MAX_DOES_NOT_THROW;
+
+	private:
+
+		addrinfo * LinuxEndPoints;
+
+	};
 
 } // namespace IP
+} // MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
+MAX_CURRENT_VERSION_NAMESPACE_END( v0 )
 } // namespace maxSocket
-
-#endif // #ifndef MAXSOCKET_IP_LINUXADDRESSVERSION6POLICY_HPP
