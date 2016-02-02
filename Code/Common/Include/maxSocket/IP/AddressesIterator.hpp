@@ -44,7 +44,7 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 namespace IP
 {
 
-	class AddressesIterator : public std::iterator< std::forward_iterator_tag, std::unique_ptr< maxSocket::IP::Address > >
+	class AddressesIterator : public std::iterator< std::forward_iterator_tag, maxSocket::v0::IP::Address >
 	{
 	public:
 

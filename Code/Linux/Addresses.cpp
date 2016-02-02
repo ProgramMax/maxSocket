@@ -68,12 +68,12 @@ namespace IP
 		return *this;
 	}
 
-	AddressesIterator Addresses::begin() MAX_DOES_NOT_THROW
+	AddressesIterator Addresses::begin() const MAX_DOES_NOT_THROW
 	{
 		return AddressesIterator( LinuxEndPoints );
 	}
 
-	AddressesIterator Addresses::end() MAX_DOES_NOT_THROW
+	AddressesIterator Addresses::end() const MAX_DOES_NOT_THROW
 	{
 		return AddressesIterator( NULL );
 	}

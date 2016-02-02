@@ -56,8 +56,8 @@ namespace IP
 		Addresses & operator =( const Addresses & rhs ) MAX_DOES_NOT_THROW = delete;
 		Addresses & operator =( Addresses && rhs ) MAX_DOES_NOT_THROW;
 
-		AddressesIterator begin() MAX_DOES_NOT_THROW;
-		AddressesIterator end() MAX_DOES_NOT_THROW;
+		AddressesIterator begin() const MAX_DOES_NOT_THROW;
+		AddressesIterator end() const MAX_DOES_NOT_THROW;
 
 	private:
 

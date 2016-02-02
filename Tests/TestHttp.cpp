@@ -66,7 +66,7 @@ int main()
 		// Make a nested scope because the socket should be destroyed before the socket system is
 
 		auto FirstEndPoint = * EndPoints.begin();
-		
+
 		auto Socket = std::unique_ptr< maxSocket::Socket >{};
 		auto CreateSocketResult = SocketSystem->CreateSocketAndConnect( FirstEndPoint, 80, maxSocket::Protocol::TCP, Socket );
 		if( CreateSocketResult != maxSocket::CreateSocketAndConnectResults::Success )
