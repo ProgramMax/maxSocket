@@ -36,7 +36,7 @@
 	#include <memory>
 	#include <max/Compiling/Configuration/Platform.hpp>
 #else
-	#include "..\..\Windows\PrecompiledHeader.hpp"
+	#include "../../../Windows/Include/PrecompiledHeader.hpp"
 #endif // #ifdef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <max/Compiling/CurrentVersionNamespace.hpp>

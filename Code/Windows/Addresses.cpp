@@ -28,23 +28,56 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "PrecompiledHeader.hpp"
-#include "WindowsAddressVersion6Policy.hpp"
+#include <maxSocket/IP/Addresses.hpp>
 
 namespace maxSocket
+{
+namespace v0
 {
 namespace IP
 {
 
-	WindowsAddressVersion6Policy::WindowsAddressVersion6Policy( in_addr6 Address ) MAX_DOES_NOT_THROW
-		: m_Address( Address )
+	Addresses::Addresses() MAX_DOES_NOT_THROW
+		: EndPoints( NULL )
 	{
 	}
 
-	std::string WindowsAddressVersion6Policy::GetRepresentation() MAX_DOES_NOT_THROW
+	Addresses::Addresses( Addresses && rhs ) MAX_DOES_NOT_THROW
+		: EndPoints( rhs.EndPoints )
 	{
-		char str[ INET6_ADDRSTRLEN ];
-		return std::string( inet_ntop( AF_INET6, & m_Address, str, INET6_ADDRSTRLEN ) );
+		rhs.EndPoints = NULL;
+	}
+
+	Addresses::Addresses( addrinfo * EndPoints ) MAX_DOES_NOT_THROW
+		: EndPoints( EndPoints )
+	{
+	}
+
+	Addresses::~Addresses() MAX_DOES_NOT_THROW
+	{
+		if( EndPoints != NULL )
+		{
+			freeaddrinfo( EndPoints );
+		}
+	}
+
+	Addresses & Addresses::operator =( Addresses && rhs ) MAX_DOES_NOT_THROW
+	{
+		EndPoints = rhs.EndPoints;
+		rhs.EndPoints = NULL;
+		return *this;
+	}
+
+	AddressesIterator Addresses::begin() const MAX_DOES_NOT_THROW
+	{
+		return AddressesIterator( EndPoints );
+	}
+
+	AddressesIterator Addresses::end() const MAX_DOES_NOT_THROW
+	{
+		return AddressesIterator( NULL );
 	}
 
 } // namespace IP
+} // namespace v0
 } // namespace maxSocket

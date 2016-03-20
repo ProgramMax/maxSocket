@@ -27,36 +27,36 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAXSOCKET_GETADDRINFO_HPP
-#define MAXSOCKET_GETADDRINFO_HPP
-
-#include "ResolveHostNameImplementationInterface.hpp"
-#include <max/Compiling/VirtualFunctionSpecification.hpp>
-#include "getaddrinfoFunctionPointers.hpp"
+#include "PrecompiledHeader.hpp"
+#include <maxSocket/IP/AddressVersion6.hpp>
+#if defined(MAX_PLATFORM_LINUX)
+	#include <sys/socket.h>
+	#include <netdb.h>
+	#include <arpa/inet.h>
+#endif
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <Ws2tcpip.h>
+#endif
 
 namespace maxSocket
 {
+namespace v0
+{
+namespace IP
+{
 
-	class getaddrinfo : public ResolveHostNameImplementationInterface
+	AddressVersion6::AddressVersion6( const NativeIPVersion6AddressType NativeIPVersion6Address ) MAX_DOES_NOT_THROW
+		: NativeIPVersion6Address( NativeIPVersion6Address )
 	{
-	public:
+	}
 
-		explicit getaddrinfo( const getaddrinfoFunctionPointers & FunctionPointers ) MAX_DOES_NOT_THROW;
+	std::string AddressVersion6::GetRepresentation() const MAX_DOES_NOT_THROW
+	{
+		auto Address = static_cast< in_addr6 >( NativeIPVersion6Address );
+		char str[ INET6_ADDRSTRLEN ];
+		return std::string( inet_ntop( AF_INET6, & Address, str, INET6_ADDRSTRLEN ) );
+	}
 
-		MAX_OVERRIDE( ~getaddrinfo() MAX_DOES_NOT_THROW );
-
-		MAX_OVERRIDE( ResolveHostNameResults::Enum ResolveHostName( char const * const HostName,
-                                              const AddressFamily::Enum AddressFamilyFilter,
-                                              std::vector< std::unique_ptr< v0::IP::Address > > & EndPoints,
-		                                      const int MaximumEndPointSanityCheck
-                                            ) MAX_DOES_NOT_THROW );
-
-	private:
-
-		const getaddrinfoFunctionPointers FunctionPointers;
-
-	}; // class getaddrinfo
-
+} // namespace IP
+} // namespace v0
 } // namespace maxSocket
-
-#endif // #ifndef MAXSOCKET_GETADDRINFO_HPP

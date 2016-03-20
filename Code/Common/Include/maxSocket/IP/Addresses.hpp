@@ -30,10 +30,15 @@
 #include "PrecompiledHeader.hpp"
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 #include "AddressesIterator.hpp"
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <unistd.h>
+#if defined(MAX_PLATFORM_LINUX)
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netdb.h>
+	#include <unistd.h>
+#endif
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <Ws2tcpip.h>
+#endif
 
 namespace maxSocket
 {
@@ -61,7 +66,7 @@ namespace IP
 
 	private:
 
-		addrinfo * LinuxEndPoints;
+		addrinfo * EndPoints;
 
 	};
 

@@ -98,27 +98,27 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\..\..\Code\Common\Include;$(ProjectDir)\..\..\Code\Windows\Include;$(ProjectDir)\..\..\Libraries\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -217,7 +217,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Code\Common\Buffer.cpp" />
     <ClCompile Include="..\..\Code\Common\IP\Address.cpp" />
-    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion4Policy.cpp">
+    <ClCompile Include="..\..\Code\Linux\Addresses.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
@@ -225,7 +225,23 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion6Policy.cpp">
+    <ClCompile Include="..\..\Code\Linux\AddressesIterator.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\AddressVersion4.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\AddressVersion6.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
@@ -249,9 +265,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\getaddrinfo.cpp" />
-    <ClCompile Include="..\..\Code\Windows\getaddrinfoFunctionPointers.cpp" />
-    <ClCompile Include="..\..\Code\Windows\gethostbyname.cpp" />
+    <ClCompile Include="..\..\Code\Windows\Addresses.cpp" />
+    <ClCompile Include="..\..\Code\Windows\AddressesIterator.cpp" />
+    <ClCompile Include="..\..\Code\Windows\AddressVersion4.cpp" />
+    <ClCompile Include="..\..\Code\Windows\AddressVersion6.cpp" />
     <ClCompile Include="..\..\Code\Windows\PrecompiledHeader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -260,11 +277,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.cpp" />
     <ClCompile Include="..\..\Code\Windows\Socket.cpp" />
     <ClCompile Include="..\..\Code\Windows\SocketSystem.cpp" />
-    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion4Policy.cpp" />
-    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion6Policy.cpp" />
     <ClCompile Include="..\..\Tests\TestHttp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -274,6 +288,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\Tests\TestResolveHostName.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\UnitTests.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
@@ -281,12 +303,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\UnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\AddressFamily.hpp" />
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\Buffer.hpp" />
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Address.hpp" />
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Addresses.hpp" />
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressesIterator.hpp" />
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressVersion4.hpp" />
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressVersion6.hpp" />
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Version.hpp" />
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\Protocol.hpp" />
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\Socket.hpp" />
@@ -301,29 +326,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion4Policy.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion6Policy.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\getaddrinfo.hpp" />
-    <ClInclude Include="..\..\Code\Windows\getaddrinfoFunctionPointers.hpp" />
-    <ClInclude Include="..\..\Code\Windows\gethostbyname.hpp" />
-    <ClInclude Include="..\..\Code\Windows\PrecompiledHeader.hpp" />
-    <ClInclude Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.hpp" />
-    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion4Policy.hpp" />
-    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion6Policy.hpp" />
+    <ClInclude Include="..\..\Code\Windows\Include\PrecompiledHeader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Code\Common\IP\AddressVersion4.inl" />

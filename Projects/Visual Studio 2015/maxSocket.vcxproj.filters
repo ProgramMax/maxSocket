@@ -28,6 +28,9 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{8b8055e7-8926-481b-be10-858bcc384e3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Windows\Include">
+      <UniqueIdentifier>{2b198bcd-5118-47a3-8998-08ea8ec0ada3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Code\Common\Buffer.cpp">
@@ -45,44 +48,44 @@
     <ClCompile Include="..\..\Code\Windows\Socket.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\getaddrinfoFunctionPointers.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\getaddrinfo.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\gethostbyname.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Code\Windows\SocketSystem.cpp">
       <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Code\Linux\SocketSystem.cpp">
       <Filter>Linux</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion4Policy.cpp">
-      <Filter>Linux</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Linux\LinuxAddressVersion6Policy.cpp">
-      <Filter>Linux</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\TestResolveHostName.cpp">
       <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion4Policy.cpp">
-      <Filter>Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\WindowsAddressVersion6Policy.cpp">
-      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\UnitTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Tests\TestHttp.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\Addresses.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\AddressesIterator.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\AddressVersion4.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Linux\AddressVersion6.cpp">
+      <Filter>Linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\AddressVersion4.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\AddressVersion6.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\Addresses.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Code\Windows\AddressesIterator.cpp">
+      <Filter>Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Code\Common\IP\AddressVersion6.hpp">
       <Filter>Common\IP</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\PrecompiledHeader.hpp">
-      <Filter>Windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Code\Linux\Include\PrecompiledHeader.hpp">
       <Filter>Linux\Include</Filter>
@@ -119,29 +119,20 @@
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\SocketSystem.hpp">
       <Filter>Common\Include\maxSocket</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\getaddrinfoFunctionPointers.hpp">
-      <Filter>Windows</Filter>
+    <ClInclude Include="..\..\Code\Windows\Include\PrecompiledHeader.hpp">
+      <Filter>Windows\Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\getaddrinfo.hpp">
-      <Filter>Windows</Filter>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Addresses.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\gethostbyname.hpp">
-      <Filter>Windows</Filter>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressesIterator.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\ResolveHostNameImplementationInterface.hpp">
-      <Filter>Windows</Filter>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressVersion4.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion4Policy.hpp">
-      <Filter>Linux</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Linux\LinuxAddressVersion6Policy.hpp">
-      <Filter>Linux</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion4Policy.hpp">
-      <Filter>Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\WindowsAddressVersion6Policy.hpp">
-      <Filter>Windows</Filter>
+    <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\AddressVersion6.hpp">
+      <Filter>Common\Include\maxSocket\IP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

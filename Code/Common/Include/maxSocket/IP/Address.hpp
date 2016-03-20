@@ -32,7 +32,7 @@
 
 #include "Version.hpp"
 #ifndef NO_PRECOMPILED_HEADER
-	#include "../../../../Windows/PrecompiledHeader.hpp"
+	#include "../../../../Windows/Include/PrecompiledHeader.hpp"
 #endif // #ifndef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <string>

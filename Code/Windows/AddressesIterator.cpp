@@ -27,29 +27,61 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAXSOCKET_GETHOSTBYNAME_HPP
-#define MAXSOCKET_GETHOSTBYNAME_HPP
-
-#include "ResolveHostNameImplementationInterface.hpp"
-#include <max/Compiling/VirtualFunctionSpecification.hpp>
+#include "PrecompiledHeader.hpp"
+#include <maxSocket/IP/AddressesIterator.hpp>
+#include <maxSocket/IP/Address.hpp>
+#include <maxSocket/IP/AddressVersion4.hpp>
+#include <maxSocket/IP/AddressVersion6.hpp>
 
 namespace maxSocket
 {
+namespace v0
+{
+namespace IP
+{
 
-	class gethostbyname : public ResolveHostNameImplementationInterface
+	AddressesIterator & AddressesIterator::operator ++()
 	{
-	public:
+		CurrentEndPoint = CurrentEndPoint->ai_next;
+		return *this;
+	}
 
-		MAX_OVERRIDE( ~gethostbyname() MAX_DOES_NOT_THROW );
+	AddressesIterator AddressesIterator::operator ++( int )
+	{
+		AddressesIterator Temp( *this );
+		operator++();
+		return Temp;
+	}
 
-		MAX_OVERRIDE( ResolveHostNameResults::Enum ResolveHostName( const char * const HostName,
-		                                                            const AddressFamily::Enum AddressFamilyFilter,
-		                                                            std::vector< std::unique_ptr< v0::IP::Address > > & EndPoints,
-		                                                            const int MaximumEndPointSanityCheck
-		                                                          ) MAX_DOES_NOT_THROW );
+	bool AddressesIterator::operator ==( const AddressesIterator & rhs ) const
+	{
+		return CurrentEndPoint == rhs.CurrentEndPoint;
+	}
 
-	}; // class gethostbyname
+	bool AddressesIterator::operator !=( const AddressesIterator & rhs ) const
+	{
+		return CurrentEndPoint != rhs.CurrentEndPoint;
+	}
 
+	maxSocket::v0::IP::Address AddressesIterator::operator *() const
+	{
+		switch( CurrentEndPoint->ai_family )
+		{
+		case AF_INET:
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion4( reinterpret_cast< sockaddr_in * >( CurrentEndPoint->ai_addr )->sin_addr ) );
+		case AF_INET6:
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion6( reinterpret_cast< sockaddr_in6 * >( CurrentEndPoint->ai_addr )->sin6_addr ) );
+		default:
+			// We encountered an unknown address family.
+			throw;
+		}
+	}
+
+	AddressesIterator::AddressesIterator( addrinfo * const CurrentEndPoint )
+		: CurrentEndPoint( CurrentEndPoint )
+	{
+	}
+
+} // namespace IP
+} // namespace v0
 } // namespace maxSocket
-
-#endif // #ifndef MAXSOCKET_GETHOSTBYNAME_HPP

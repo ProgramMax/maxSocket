@@ -38,39 +38,39 @@ namespace IP
 {
 
 	Addresses::Addresses() MAX_DOES_NOT_THROW
-		: LinuxEndPoints( NULL )
+		: EndPoints( NULL )
 	{
 	}
 
 	Addresses::Addresses( Addresses && rhs ) MAX_DOES_NOT_THROW
-		: LinuxEndPoints( rhs.LinuxEndPoints )
+		: EndPoints( rhs.EndPoints )
 	{
-		rhs.LinuxEndPoints = NULL;
+		rhs.EndPoints = NULL;
 	}
 
-	Addresses::Addresses( addrinfo * LinuxEndPoints ) MAX_DOES_NOT_THROW
-		: LinuxEndPoints( LinuxEndPoints )
+	Addresses::Addresses( addrinfo * EndPoints ) MAX_DOES_NOT_THROW
+		: EndPoints( EndPoints )
 	{
 	}
 
 	Addresses::~Addresses() MAX_DOES_NOT_THROW
 	{
-		if( LinuxEndPoints != NULL )
+		if( EndPoints != NULL )
 		{
-			freeaddrinfo( LinuxEndPoints );
+			freeaddrinfo( EndPoints );
 		}
 	}
 
 	Addresses & Addresses::operator =( Addresses && rhs ) MAX_DOES_NOT_THROW
 	{
-		LinuxEndPoints = rhs.LinuxEndPoints;
-		rhs.LinuxEndPoints = NULL;
+		EndPoints = rhs.EndPoints;
+		rhs.EndPoints = NULL;
 		return *this;
 	}
 
 	AddressesIterator Addresses::begin() const MAX_DOES_NOT_THROW
 	{
-		return AddressesIterator( LinuxEndPoints );
+		return AddressesIterator( EndPoints );
 	}
 
 	AddressesIterator Addresses::end() const MAX_DOES_NOT_THROW
