@@ -54,9 +54,6 @@
     <ClCompile Include="..\..\Code\Linux\SocketSystem.cpp">
       <Filter>Linux</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Tests\TestResolveHostName.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Tests\UnitTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -86,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Code\Windows\AddressesIterator.cpp">
       <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Tests\TestResolveHostname.cpp">
+      <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
