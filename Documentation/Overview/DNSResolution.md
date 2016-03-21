@@ -20,7 +20,7 @@ The OS's default method of DNS resolution is a blocking operation. And so maxSoc
 More specific documentation from the code below:
 
 * [SocketSystem::CreateSocketSystem](../Code/v0/SocketSystem_CreateSocketSystem.md)
-* [SocketSystem::ResolveHostNameUsingOSDefaults](../Code/v0/SocketSystem_ResolveHostNameUsingOSDefaults.md)
+* [SocketSystem::ResolveHostnameUsingOSDefaults](../Code/v0/SocketSystem_ResolveHostnameUsingOSDefaults.md)
 
 ```c++
 #include <maxSocket/SocketSystem.hpp>
@@ -48,8 +48,8 @@ int main()
 	// Here we resolve the domain name "google.com".
 	// We do this on any address family, which means we see results for both IP version 4 and IP version 6.
 	// The results are "stored" inside EndPoints.
-	auto ResolveHostNameResult = SocketSystem->ResolveHostNameUsingOSDefaults( "google.com", maxSocket::AddressFamily::Any, EndPoints );
-	if( ResolveHostNameResult != maxSocket::ResolveHostNameResults::Success )
+	auto ResolveHostnameResult = SocketSystem->ResolveHostnameUsingOSDefaults( "google.com", maxSocket::AddressFamily::Any, EndPoints );
+	if( ResolveHostnameResult != maxSocket::ResolveHostnameResults::Success )
 	{
 		return -1;
 	}

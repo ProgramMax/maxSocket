@@ -10,7 +10,7 @@
 * [v0](Code/v0.md)
     * [SocketSystem](Code/v0/SocketSystem.md)
 	    * [SocketSystem::CreateSocketSystem](Code/v0/SocketSystem_CreateSocketSystem.md)
-		* [SocketSystem::ResolveHostNameUsingOSDefaults](Code/v0/SocketSystem_ResolveHostNameUsingOSDefaults.md)
+		* [SocketSystem::ResolveHostnameUsingOSDefaults](Code/v0/SocketSystem_ResolveHostnameUsingOSDefaults.md)
 		* [SocketSystem::CreateSocketAndConnect](Code/v0/SocketSystem_CreateSocketAndConnect.md)
 		* [SocketSystem::~SocketSystem](Code/v0/SocketSystem_dtor.md)
 

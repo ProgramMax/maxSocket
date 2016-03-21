@@ -46,8 +46,8 @@ int main()
 
 	auto EndPoints = maxSocket::v0::IP::Addresses{};
 
-	auto ResolveHostNameResult = SocketSystem->ResolveHostNameUsingOSDefaults( "google.com", maxSocket::AddressFamily::Any, EndPoints );
-	if( ResolveHostNameResult != maxSocket::ResolveHostNameResults::Success )
+	auto ResolveHostNameResult = SocketSystem->ResolveHostnameUsingOSDefaults( "google.com", maxSocket::AddressFamily::Any, EndPoints );
+	if( ResolveHostNameResult != maxSocket::ResolveHostnameResults::Success )
 	{
 		std::cout << "Error\n";
 		return -1;
