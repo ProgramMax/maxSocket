@@ -29,7 +29,7 @@ ResolveHostNameResults::Enum SocketSystem::ResolveHostNameUsingOSDefaults(
 ## Parameters
 
 * **HostName**
-    * Contains an ANSI null-terminated string specifying the host name to be resolved.
+    * Contains an ANSI null-terminated string specifying the hostname to be resolved.
 	* This could be a domain like "google.com" or a subdomain like "www.google.com"
 * **AddresFamilyFilter**
     * Specifies which address family results should be stored inside EndPoints upon success:

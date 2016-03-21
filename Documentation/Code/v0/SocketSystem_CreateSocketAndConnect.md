@@ -4,7 +4,7 @@ API version: [**v0**](../v0.md)
 
 ## What is it?
 
-This method will create a socket and connect to the spefied end point.
+This method will create a socket and connect to the specified end point.
 
 This is a method of [SocketSystem](SocketSystem.md).
 
