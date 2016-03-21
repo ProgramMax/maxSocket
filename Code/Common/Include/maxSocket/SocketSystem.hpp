@@ -67,11 +67,8 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 			OutOfMemory,
 			NetworkHostExistsButHasNoEndPoints,
 			UnknownHostName,
-			EncounteredAnUnknownAddressFamily,
 			SystemError,
 			LibraryError,
-			AuthoritiveAnswerHostNotFound,
-			ExceededMaximumEndPointSanityCheck,
 			UnknownError
 		}; // enum Enum
 	} // namespace ResolveHostNameResults
@@ -81,15 +78,12 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 		enum Enum
 		{
 			Success,
-			UnknownIPVersion,
-			UnknownProtocol,
 			NoMoreSocketDescriptorsAvailable,
 			ConnectionRefused,
-			RemoteHostResetConnection,
+			ConnectionResetByEndPoint,
 			TimedOut,
 			NetworkUnreachable,
-			RemoteAddressInvalid,
-			HostUnreachable,
+			EndPointUnreachable,
 			NetworkDown,
 			Interrupted,
 			NotAuthorized,
@@ -106,18 +100,22 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 	{
 	public:
 
-		static CreateSocketSystemResults::Enum CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW;
+		static CreateSocketSystemResults::Enum CreateSocketSystem(
+		                                                           std::unique_ptr< SocketSystem > & CreatedSocketSystem
+		                                                         ) MAX_DOES_NOT_THROW;
 
 		~SocketSystem() MAX_DOES_NOT_THROW;
 
-		ResolveHostNameResults::Enum ResolveHostName( const char * const HostName,
-													  const AddressFamily::Enum AddresFamilyFilter,
-													  IP::Addresses & EndPoints
-													) MAX_DOES_NOT_THROW;
+		ResolveHostNameResults::Enum ResolveHostNameUsingOSDefaults(
+		                                                             const char * const        HostName,
+													                 const AddressFamily::Enum AddresFamilyFilter,
+													                 IP::Addresses &           EndPoints
+													               ) MAX_DOES_NOT_THROW;
 
-		CreateSocketAndConnectResults::Enum CreateSocketAndConnect( const IP::Address & EndPoint,
-																	const unsigned short Port,
-																	const Protocol::Enum Protocol,
+		CreateSocketAndConnectResults::Enum CreateSocketAndConnect(
+		                                                            const IP::Address &         EndPoint,
+																	const unsigned short        Port,
+																	const Protocol::Enum        Protocol,
 																	std::unique_ptr< Socket > & CreatedSocket
 																  ) MAX_DOES_NOT_THROW;
 
