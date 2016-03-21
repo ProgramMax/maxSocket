@@ -46,14 +46,14 @@ int main()
 
 	auto EndPoints = maxSocket::v0::IP::Addresses{};
 
-	auto ResolveHostNameResult = SocketSystem->ResolveHostName( "google.com", maxSocket::AddressFamily::Any, EndPoints );
+	auto ResolveHostNameResult = SocketSystem->ResolveHostNameUsingOSDefaults( "google.com", maxSocket::AddressFamily::Any, EndPoints );
 	if( ResolveHostNameResult != maxSocket::ResolveHostNameResults::Success )
 	{
 		std::cout << "Error\n";
 		return -1;
 	}
 
-	for( const auto& EndPoint : EndPoints )
+	for( const auto & EndPoint : EndPoints )
 	{
 		std::cout << "EndPoint: " << EndPoint.GetRepresentation() << "\n";
 	}

@@ -49,7 +49,9 @@ namespace maxSocket
 namespace v0
 {
 
-	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW
+	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem(
+	                                                                  std::unique_ptr< SocketSystem > & CreatedSocketSystem
+	                                                                ) MAX_DOES_NOT_THROW
 	{
 		auto RequestedVersion = MAKEWORD( 2, 2 );
 		auto WinsockVersion   = WSADATA{};
@@ -92,10 +94,11 @@ namespace v0
 		WSACleanup();
 	}
 
-	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
-	                                                            const AddressFamily::Enum AddressFamilyFilter,
-	                                                            IP::Addresses & EndPoints
-	                                                          ) MAX_DOES_NOT_THROW
+	ResolveHostNameResults::Enum SocketSystem::ResolveHostNameUsingOSDefaults(
+	                                                                           const char * const        HostName,
+	                                                                           const AddressFamily::Enum AddressFamilyFilter,
+	                                                                           IP::Addresses &           EndPoints
+	                                                                         ) MAX_DOES_NOT_THROW
 	{
 		//
 		// Prepare parameters for the call to getaddrinfo.
@@ -169,9 +172,10 @@ namespace v0
 		return ResolveHostNameResults::Success;
 	}
 
-	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
-	                                                                          const unsigned short Port,
-	                                                                          const Protocol::Enum Protocol,
+	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect(
+	                                                                          const IP::Address &         EndPoint,
+	                                                                          const unsigned short        Port,
+	                                                                          const Protocol::Enum        Protocol,
 	                                                                          std::unique_ptr< Socket > & CreatedSocket
 	                                                                        ) MAX_DOES_NOT_THROW
 	{
@@ -275,19 +279,19 @@ namespace v0
 					// This just means the socket is async and we don't know if it connected yet.
 					break;
 
-				case WSAECONNREFUSED: // unable to connect
+				case WSAECONNREFUSED:    // unable to connect
 					return CreateSocketAndConnectResults::ConnectionRefused;
-				case WSAETIMEDOUT: // timed out
+				case WSAETIMEDOUT:       // timed out
 					return CreateSocketAndConnectResults::TimedOut;
 				case WSAENETUNREACH:
 					return CreateSocketAndConnectResults::NetworkUnreachable;
-				case WSAEADDRNOTAVAIL: // remote address is not valid
+				case WSAEADDRNOTAVAIL:   // remote address is not valid
 					return CreateSocketAndConnectResults::RemoteAddressInvalid;
-				case WSAEAFNOSUPPORT: // address in specified family cannot be used
-										// (perhaps using an IPv6 address for an IPv4 family
+				case WSAEAFNOSUPPORT:    // address in specified family cannot be used
+										 // (perhaps using an IPv6 address for an IPv4 family
 					return CreateSocketAndConnectResults::LibraryError;
-				case WSAEHOSTUNREACH: // unreachable host
-					return CreateSocketAndConnectResults::HostUnreachable;
+				case WSAEHOSTUNREACH:    // unreachable host
+					return CreateSocketAndConnectResults::EndPointUnreachable;
 				case WSAENETDOWN:
 					return CreateSocketAndConnectResults::NetworkDown;
 
