@@ -13,7 +13,7 @@ DNS resolution is typically the first networking step run by the client in a cli
 
 ## Important coding notes
 
-The OS's default method of DNS resolution is a blocking operation. And so maxSocket also blocks on the caling thread. It is up to the developer to call it on an appropriate thread.
+The OS's default method of DNS resolution is a blocking operation. And so maxSocket also blocks on the calling thread. It is up to the developer to call it on an appropriate thread.
 
 ## Code
 
@@ -73,7 +73,7 @@ DNS resolution requires sending a UDP datagram to the IP of the DNS server and a
 
 There are many types of DNS records. The important records for maxSocket are A and AAAA records, which correspond to IP version 4 and IP version 6 addresses, respectively.
 
-There result of DNS resoltion can contain multiple A and AAAA records. This provides a list of servers to the client. Sometimes the client attempts to connect to the first and works its way down the list until it establishes a connection. Sometimes the client selects a server at random. It is up to the developer to use this list in the way which is most suited for their task.
+The result of DNS resolution can contain multiple A and AAAA records. This provides a list of servers to the client. Sometimes the client attempts to connect to the first and works its way down the list until it establishes a connection. Sometimes the client selects a server at random. It is up to the developer to use this list in the way which is most suited for their task.
 
 ## Notes
 
