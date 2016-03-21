@@ -88,5 +88,5 @@ Right now, the only method of DNS resolution implemented by maxSocket is to use 
 However, we would like to provide advanced functionality for those who need it.
 
 In the future, we will add support for:
-* **multi-horned connections**, such as a cell phone which can make a DNS request over either the data plan or the WiFi
+* **multihomed connections**, such as a cell phone which can make a DNS request over either the data plan or the WiFi
 * **a custom DNS resolver**, which allows skipping the hosts file, making the request through a specific adapter, and using a DNS server other than the one specified for that adapter
