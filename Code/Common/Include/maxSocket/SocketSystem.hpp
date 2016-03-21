@@ -57,7 +57,7 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 		}; // enum Enum
 	} // namespace CreateSocketSystemResult
 
-	namespace ResolveHostNameResults
+	namespace ResolveHostnameResults
 	{
 		enum Enum
 		{
@@ -66,7 +66,7 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 			NameServerReturnedAPermanentFailure,
 			OutOfMemory,
 			NetworkHostExistsButHasNoEndPoints,
-			UnknownHostName,
+			UnknownHostname,
 			SystemError,
 			LibraryError,
 			UnknownError
@@ -106,8 +106,8 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 
 		~SocketSystem() MAX_DOES_NOT_THROW;
 
-		ResolveHostNameResults::Enum ResolveHostNameUsingOSDefaults(
-		                                                             const char * const        HostName,
+		ResolveHostnameResults::Enum ResolveHostnameUsingOSDefaults(
+		                                                             const char * const        Hostname,
 													                 const AddressFamily::Enum AddresFamilyFilter,
 													                 IP::Addresses &           EndPoints
 													               ) MAX_DOES_NOT_THROW;

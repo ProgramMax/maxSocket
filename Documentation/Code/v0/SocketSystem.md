@@ -8,7 +8,7 @@ The SocketSystem class is the starting point for all of maxSocket.
 
 A developer starts using maxSocket by calling [CreateSocketSystem](SocketSystem_CreateSocketSystem.md).
 
-From there, a developer may choose to resolve a host name via [ResolveHostNameUsingOSDefaults](SocketSystem_ResolveHostNameUsingOSDefaults.md) and/or
+From there, a developer may choose to resolve a hostname via [ResolveHostnameUsingOSDefaults](SocketSystem_ResolveHostnameUsingOSDefaults.md) and/or
 connect to an end point via [CreateSocketAndConnect](SocketSystem_CreateSocketAndConnect.md).
 
 ## Note
@@ -20,7 +20,7 @@ So a developer would call [CreateSocketAndConnect](SocketSystem_CreateSocketAndC
 ## Methods of interest
 
 * [CreateSocketSystem](SocketSystem_CreateSocketSystem.md)
-* [ResolveHostNameUsingOSDefaults](SocketSystem_ResolveHostNameUsingOSDefaults.md)
+* [ResolveHostnameUsingOSDefaults](SocketSystem_ResolveHostnameUsingOSDefaults.md)
 * [CreateSocketAndConnect](SocketSystem_CreateSocketAndConnect.md)
 
 ## Less interesting methods

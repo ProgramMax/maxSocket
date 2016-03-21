@@ -94,8 +94,8 @@ namespace v0
 		WSACleanup();
 	}
 
-	ResolveHostNameResults::Enum SocketSystem::ResolveHostNameUsingOSDefaults(
-	                                                                           const char * const        HostName,
+	ResolveHostnameResults::Enum SocketSystem::ResolveHostnameUsingOSDefaults(
+	                                                                           const char * const        Hostname,
 	                                                                           const AddressFamily::Enum AddressFamilyFilter,
 	                                                                           IP::Addresses &           EndPoints
 	                                                                         ) MAX_DOES_NOT_THROW
@@ -117,7 +117,7 @@ namespace v0
 			break;
 		default:
 			// maxSocket was not updated to support a newly-added AddressFamily
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 		}
 
 		auto WindowsSocketFilters        = addrinfo{ 0 };
@@ -135,7 +135,7 @@ namespace v0
 		//
 		// Make the call to getaddrinfo.
 		//
-		auto getaddrinfoResult = getaddrinfo( HostName, NULL, & WindowsSocketFilters, & WindowsEndPoints );
+		auto getaddrinfoResult = getaddrinfo( Hostname, NULL, & WindowsSocketFilters, & WindowsEndPoints );
 		switch( getaddrinfoResult )
 		{
 		case 0:
@@ -143,25 +143,25 @@ namespace v0
 			break;
 
 		case WSATRY_AGAIN:
-			return ResolveHostNameResults::NameServerReturnedATemporaryFailure;
+			return ResolveHostnameResults::NameServerReturnedATemporaryFailure;
 
 		case WSAEINVAL:             // An invalid value was provided for the ai_flags member of the pHints parameter.
 		case WSAEAFNOSUPPORT:       // The ai_family of the pHints parameter not supported.
 		case WSATYPE_NOT_FOUND:     // The pServiceName parameter is not supported for the specified ai_socktype member of the pHints parameter.
 		case WSAESOCKTNOSUPPORT:    // The ai_socktype member of the pHints parameter is not supported.
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 
 		case WSANO_RECOVERY:        // A nonrecoverable failure in name resolution occurred.
-			return ResolveHostNameResults::SystemError;
+			return ResolveHostnameResults::SystemError;
 		case WSA_NOT_ENOUGH_MEMORY: // A memory allocation failure occurred.
-			return ResolveHostNameResults::OutOfMemory;
+			return ResolveHostnameResults::OutOfMemory;
 		case WSAHOST_NOT_FOUND:     // The name does not resolve for the supplied parameters or the pNodeName and pServiceName parameters were not provided.
-			return ResolveHostNameResults::UnknownHostName;
+			return ResolveHostnameResults::UnknownHostname;
 		case WSANO_DATA:
-			return ResolveHostNameResults::NetworkHostExistsButHasNoEndPoints;
+			return ResolveHostnameResults::NetworkHostExistsButHasNoEndPoints;
 		
 		default:
-			return ResolveHostNameResults::UnknownError;
+			return ResolveHostnameResults::UnknownError;
 		}
 
 
@@ -169,7 +169,7 @@ namespace v0
 
 		EndPoints = IP::Addresses( WindowsEndPoints );
 
-		return ResolveHostNameResults::Success;
+		return ResolveHostnameResults::Success;
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect(
@@ -189,7 +189,7 @@ namespace v0
 			AddressFamily = AF_INET6;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownIPVersion;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 		auto WindowsSocketType = SOCK_STREAM;
@@ -205,7 +205,7 @@ namespace v0
 			WindowsProtocol   = IPPROTO_UDP;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownProtocol;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 
@@ -265,7 +265,7 @@ namespace v0
 				}
 				break;
 			default:
-				return CreateSocketAndConnectResults::UnknownIPVersion;
+				return CreateSocketAndConnectResults::LibraryError;
 			}
 
 			auto WSAConnectResult = WSAConnect( NativeSocketHandle, reinterpret_cast< const sockaddr * >( & AddressStorage ), sizeof( AddressStorage ), NULL, NULL, NULL, NULL );
@@ -286,7 +286,6 @@ namespace v0
 				case WSAENETUNREACH:
 					return CreateSocketAndConnectResults::NetworkUnreachable;
 				case WSAEADDRNOTAVAIL:   // remote address is not valid
-					return CreateSocketAndConnectResults::RemoteAddressInvalid;
 				case WSAEAFNOSUPPORT:    // address in specified family cannot be used
 										 // (perhaps using an IPv6 address for an IPv4 family
 					return CreateSocketAndConnectResults::LibraryError;

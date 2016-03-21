@@ -62,8 +62,8 @@ namespace v0
 	{
 	}
 
-	ResolveHostNameResults::Enum SocketSystem::ResolveHostNameUsingOSDefaults(
-	                                                                           const char * const        HostName,
+	ResolveHostnameResults::Enum SocketSystem::ResolveHostnameUsingOSDefaults(
+	                                                                           const char * const        Hostname,
 	                                                                           const AddressFamily::Enum AddressFamilyFilter,
 	                                                                           IP::Addresses &           EndPoints
 	                                                                         ) MAX_DOES_NOT_THROW
@@ -85,7 +85,7 @@ namespace v0
 			break;
 		default:
 			// maxSocket was not updated to support a newly-added AddressFamily
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 		}
 
 		auto LinuxSocketFilters        = addrinfo{ 0 };
@@ -100,7 +100,7 @@ namespace v0
 		//
 		// Make the call to getaddrinfo.
 		//
-		auto getaddrinfoResult = getaddrinfo( HostName, NULL, & LinuxSocketFilters, & LinuxEndPoints );
+		auto getaddrinfoResult = getaddrinfo( Hostname, NULL, & LinuxSocketFilters, & LinuxEndPoints );
 		switch( getaddrinfoResult )
 		{
 		case 0: // Success
@@ -111,23 +111,23 @@ namespace v0
 		case EAI_FAMILY:     // The requested address family is not supported.
 		case EAI_SOCKTYPE:   // The requested socket type is not supported. This could occur, for example, if hints.ai_socktype and hints.ai_protocol are inconsistent (e.g., SOCKDGRAM and IPPROTO_TCP, respectively).
 		case EAI_SERVICE:    // The requested service is not available for the requested socket type. It may be available through another socket type. For example, this error could occur if service was "shell" (a service only available on stream sockets), and either hints.ai_protocol was IPPROTO_UDP, or hints.ai_socktype was SOCK_DGRAM; or the error could occur if service was not NULL, and hints.ai_socktype was SOCK_RAW (a socket type that does not support the concept of services).
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 
 		case EAI_AGAIN:      // The name server returned a temporary failure indication. Try again later.
-			return ResolveHostNameResults::NameServerReturnedATemporaryFailure;
+			return ResolveHostnameResults::NameServerReturnedATemporaryFailure;
 		case EAI_FAIL:       // The name server returned a permanent failure indication.
-			return ResolveHostNameResults::NameServerReturnedAPermanentFailure;
+			return ResolveHostnameResults::NameServerReturnedAPermanentFailure;
 		case EAI_MEMORY:     // Out of memory.
-			return ResolveHostNameResults::OutOfMemory;
+			return ResolveHostnameResults::OutOfMemory;
 		case EAI_NODATA:     // The specified network host exists, but does not have any network addresses defined.
-			return ResolveHostNameResults::NetworkHostExistsButHasNoEndPoints;
+			return ResolveHostnameResults::NetworkHostExistsButHasNoEndPoints;
 		case EAI_NONAME:     // The node or service is not known; or both node and service are NULL; or AI_NUMERICSERV was specified in hints.ai_flags and service was not a numeric port-number string.
-			return ResolveHostNameResults::UnknownHostName;
+			return ResolveHostnameResults::UnknownHostname;
 		case EAI_SYSTEM:     // Other system error, check errno for details.
-			return ResolveHostNameResults::SystemError;
+			return ResolveHostnameResults::SystemError;
 
 		default:
-			return ResolveHostNameResults::UnknownError;
+			return ResolveHostnameResults::UnknownError;
 		}
 
 
@@ -135,7 +135,7 @@ namespace v0
 
 		EndPoints = IP::Addresses( LinuxEndPoints );
 
-		return ResolveHostNameResults::Success;
+		return ResolveHostnameResults::Success;
 	}
 
 	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect(
