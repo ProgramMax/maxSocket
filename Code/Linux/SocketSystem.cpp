@@ -155,7 +155,7 @@ namespace v0
 			AddressFamily = PF_INET6;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownIPVersion;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 		auto LinuxSocketType = SOCK_STREAM;
@@ -171,7 +171,7 @@ namespace v0
 			LinuxProtocol   = IPPROTO_UDP;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownProtocol;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 
@@ -225,7 +225,7 @@ namespace v0
 				}
 				break;
 			default:
-				return CreateSocketAndConnectResults::UnknownIPVersion;
+				return CreateSocketAndConnectResults::LibraryError;
 			}
 			auto connectResult = connect( NativeSocketHandle, reinterpret_cast< sockaddr * >( Address ), AddressLength );
 			if( connectResult == -1 )

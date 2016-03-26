@@ -77,7 +77,7 @@ namespace IP
 		}
 	}
 
-	AddressesIterator::AddressesIterator( addrinfo * const CurrentLinuxEndPoint )
+	AddressesIterator::AddressesIterator( addrinfo * const CurrentEndPoint )
 		: CurrentEndPoint( CurrentEndPoint )
 	{
 	}
