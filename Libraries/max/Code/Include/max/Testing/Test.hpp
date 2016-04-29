@@ -27,28 +27,53 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "DoNothingLogger.hpp"
+#ifndef MAX_TESTING_TEST_HPP
+#define MAX_TESTING_TEST_HPP
+
+#include <string>
+#include <functional>
+
+#define MAX_TESTING_ASSERT( CONDITION ) \
+	Assert( __FILE__, __LINE__, #CONDITION, CONDITION );
+
+#define MAX_TESTING_ASSERT_THROWS( FUNCTOR ) \
+	AssertThrows( __FILE__, __LINE__, #FUNCTOR, FUNCTOR );
+
+#define MAX_TESTING_ASSERT_DOES_NOT_THROW( FUNCTOR ) \
+	AssertDoesNotThrow( __FILE__, __LINE__, #FUNCTOR, FUNCTOR );
 
 namespace max
 {
-namespace Logging
+namespace Testing
 {
 
-	void DoNothingLogger::LogInfo( const wchar_t * Info ) MAX_DOES_NOT_THROW
+	class Test
 	{
-	}
+	public:
 
-	void DoNothingLogger::LogDebug( const wchar_t * Debug ) MAX_DOES_NOT_THROW
-	{
-	}
+		Test( wchar_t const * const Name, std::function< void( max::Testing::Test & CurrentTest ) > const & TestFunction  );
 
-	void DoNothingLogger::LogWarning( const wchar_t * Warning ) MAX_DOES_NOT_THROW
-	{
-	}
+		bool DidTestPass() const;
 
-	void DoNothingLogger::LogError( const wchar_t * Error ) MAX_DOES_NOT_THROW
-	{
-	}
+		void Assert( char const * const FileName, int LineNumber, char const * const ExpressionString, bool Expression );
 
-}; // namespace Logging
-}; // namespace max
+		template< typename ExceptionType, typename FunctorType >
+		void AssertThrows( char const * const FileName, int LineNumber, char const * const ExpressionString, FunctorType const & Functor );
+
+		template< typename ExceptionType, typename FunctorType >
+		void AssertDoesNotThrow( char const * const FileName, int LineNumber, char const * const ExpressionString, FunctorType const & Functor );
+
+
+		const std::wstring Name;
+		std::function< void( max::Testing::Test & CurrentTest ) > TestFunction;
+
+	private:
+
+		bool DidAllAssertionsPass;
+
+	};
+
+} // namespace Testing
+} // namespace max
+
+#endif // #ifndef MAX_TESTING_TEST_HPP

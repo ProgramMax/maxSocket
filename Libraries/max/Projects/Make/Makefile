@@ -1,0 +1,59 @@
+PROGRAM_NAME = max.a
+CODE_DIRECTORY = ../../Code/TranslationUnits
+CXX_SRCS = \
+	$(CODE_DIRECTORY)/Logging/DoNothingLogger.cpp \
+	$(CODE_DIRECTORY)/Testing/Test.cpp \
+	$(CODE_DIRECTORY)/Testing/TestSuite.cpp
+CXX_OBJS = $(CXX_SRCS:.cpp=.o)
+INCLUDE_PATHS = \
+	$(CODE_DIRECTORY)/../Include
+
+INCLUDE_PATHS_FLAGS = $(foreach d, $(INCLUDE_PATHS), -I$d)
+
+UNIT_TEST_CXX_SRCS = 
+UNIT_TEST_CXX_OBJS = $(UNIT_TEST_CXX_SRCS:.cpp=.o)
+
+CPPFLAGS += $(INCLUDE_PATHS_FLAGS) -std=c++14 -Wall -DNO_PRECOMPILED_HEADER
+
+
+CLANG_COMPILER_FLAGS =
+CLANG = clang++
+CLANG_LINKER_FLAGS =
+
+GCC_COMPILER_FLAGS =
+GCC = g++
+GCC_LINKER_FLAGS =
+
+COMPILER = $(CLANG)
+
+
+ifeq ($(COMPILER),$(GCC))
+	CPPFLAGS += $(GCC_COMPILER_FLAGS)
+	LINKER_FLAGS += $(GCC_LINKER_FLAGS)
+endif
+ifeq ($(COMPILER),$(CLANG))
+	CPPFLAGS += $(CLANG_COMPILER_FLAGS)
+	LINKER_FLAGS += $(CLANG_LINKER_FLAGS)
+endif
+
+
+
+
+all: $(PROGRAM_NAME) UnitTests
+
+$(PROGRAM_NAME): $(PCH_OBJS) $(CXX_OBJS)
+	$(COMPILER) -g $(CXX_OBJS) -o $(PROGRAM_NAME) $(LINKER_FLAGS)
+
+UnitTests: $(UNIT_TEST_CXX_OBJS)
+	$(COMPILER) -g $(UNIT_TEST_CXX_OBJS) -o UnitTests $(LINKER_FLAGS)
+
+.cpp.o:
+	$(COMPILER) -g $(CPPFLAGS) -c $< -o $@
+
+clean:
+	@- $(RM) $(PROGRAM_NAME)
+	@- $(RM) $(CXX_OBJS)
+	@- $(RM) UnitTests
+	@- $(RM) $(UNIT_TEST_CXX_OBJS)
+
+distclean: clean

@@ -27,33 +27,63 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef MAX_TESTING_TEST_HPP
-#define MAX_TESTING_TEST_HPP
+#ifndef MAX_TESTING_TESTSUITE_HPP
+#define MAX_TESTING_TESTSUITE_HPP
+
+// Usage:
+//
+// #include <max/Testing/TestSuite.hpp>
+// #incldue <stdexcept>
+//
+// int main() {
+//   max::Testing::TestSuite( "Example suite",
+//     max::Testing::AddTest( "Test equality",
+//       []( auto const & CurrentTestSuite ) {
+//         CurrentTestSuite.AssertEquals( 1, 1 );
+//       }
+//     ),
+//     max::Testing::AddTest( "Test throws",
+//       []( auto const & CurrentTestSuite ) {
+//         CurrentTestSuite.AssertThrows< std::exception >(
+//           []() { throw std::exception{}; }
+//         );
+//       }
+//     )
+//   );
+// }
 
 #include <string>
+#include <vector>
+#include <max/Testing/Test.hpp>
 
 namespace max
 {
 namespace Testing
 {
 
-	template< typename Functor >
-	class Test
+	class TestSuite
 	{
 	public:
 
-		Test( const wchar_t * Name, Functor TestFunction )
-			: Name( Name )
-			, TestFunction( TestFunction )
-		{
-		}
+		TestSuite( wchar_t const * const Name );
 
-		const std::wstring Name;
-		Functor TestFunction;
+		void AddTest( max::Testing::Test const &  TestToAdd );
+		void AddTest( max::Testing::Test       && TestToAdd );
+		void RunTests();
+
+	protected:
+
+		virtual void Setup();
+		virtual void TearDown();
+
+	private:
+
+		std::wstring Name;
+		std::vector< max::Testing::Test > Tests;
 
 	};
 
 } // namespace Testing
 } // namespace max
 
-#endif // #ifndef MAX_TESTING_TEST_HPP
+#endif // #ifndef MAX_TESTING_TESTSUITE_HPP
