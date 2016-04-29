@@ -36,4 +36,7 @@
 // #define __AVR_LIBC_MINOR__    6
 // #define __AVR_LIBC_REVISION__ 7
 
+// GCC ships with libstdc++
+// Clang ships with libc++
+
 #endif // #ifndef MAX_COMPILING_CONFIGURATION_STANDARDLIBRARY_HPP
