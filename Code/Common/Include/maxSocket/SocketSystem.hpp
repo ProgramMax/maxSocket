@@ -30,6 +30,12 @@
 #ifndef MAXSOCKET_SOCKETSYSTEM_HPP
 #define MAXSOCKET_SOCKETSYSTEM_HPP
 
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#pragma comment(lib, "Ws2_32.lib")
+#endif
+
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxSocket/AddressFamily.hpp>
 #include <vector>

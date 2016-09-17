@@ -13,9 +13,6 @@
     <Filter Include="Linux">
       <UniqueIdentifier>{1c882382-23a4-4ec8-984c-d622fdb8e1cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Linux\Include">
-      <UniqueIdentifier>{8e1d84bc-b727-4c0c-a6a8-7ef4d848fec4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Windows">
       <UniqueIdentifier>{88e45368-32a4-4a98-9ff6-7c66e8543dc6}</UniqueIdentifier>
     </Filter>
@@ -28,8 +25,35 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{8b8055e7-8926-481b-be10-858bcc384e3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Windows\Include">
-      <UniqueIdentifier>{2b198bcd-5118-47a3-8998-08ea8ec0ada3}</UniqueIdentifier>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{b8223b05-51b3-4617-a9ae-cf3f01eeee02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max">
+      <UniqueIdentifier>{9e54d6f2-22a4-4cb2-836a-9c58d200e05e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Testing">
+      <UniqueIdentifier>{899b1dd9-899e-4b37-9fce-502a937c4d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware">
+      <UniqueIdentifier>{e945ba00-2200-473a-a41e-46fdf999c701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware\CPU">
+      <UniqueIdentifier>{504c96fb-5429-4b3e-81dd-774274837f1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Logging">
+      <UniqueIdentifier>{628a41ed-70f7-4c71-bb15-4a024ae77ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware\CPU\CPUIDPolicies">
+      <UniqueIdentifier>{ad2fcf47-0f0a-43d4-b09f-ab072d6830cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware\CPU\GCC">
+      <UniqueIdentifier>{4a68adbc-e6a8-455d-b571-0f137bc14f8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware\CPU\VC">
+      <UniqueIdentifier>{18703e0f-3463-4bc3-9fc2-a441653cc754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\max\Hardware\CPU\IsCPUIDAvailablePolicies">
+      <UniqueIdentifier>{07c32287-c9ae-4dc7-bf88-ffcd29bf7927}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Code\Linux\Socket.cpp">
       <Filter>Linux</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Code\Windows\PrecompiledHeader.cpp">
-      <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Code\Windows\Socket.cpp">
       <Filter>Windows</Filter>
@@ -87,6 +108,60 @@
     <ClCompile Include="..\..\Tests\TestResolveHostname.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Testing\Test.cpp">
+      <Filter>Dependencies\max\Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Testing\TestSuite.cpp">
+      <Filter>Dependencies\max\Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\Associativity.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CacheInfo.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CacheLevel.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CPUID.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CPUIDSubleafArgumentsAndResult.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\Prefetch.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\TLB.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\TraceCache.cpp">
+      <Filter>Dependencies\max\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Logging\DoNothingLogger.cpp">
+      <Filter>Dependencies\max\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\GCC\MakeCPUID.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\GCC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\AssemblyCPUIDPolicy.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\GCCAssemblyCPUIDPolicy.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\VCIntrinsicCPUIDPolicy.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\VC\MakeCPUID.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\VC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies\AssemblyIsCPUIDAvailablePolicy.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies\GCCAssemblyIsCPUIDAvailablePolicy.cpp">
+      <Filter>Dependencies\max\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Code\Common\IP\AddressVersion4.hpp">
@@ -94,9 +169,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Code\Common\IP\AddressVersion6.hpp">
       <Filter>Common\IP</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Linux\Include\PrecompiledHeader.hpp">
-      <Filter>Linux\Include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Address.hpp">
       <Filter>Common\Include\maxSocket\IP</Filter>
@@ -119,9 +191,6 @@
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\SocketSystem.hpp">
       <Filter>Common\Include\maxSocket</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Windows\Include\PrecompiledHeader.hpp">
-      <Filter>Windows\Include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Code\Common\Include\maxSocket\IP\Addresses.hpp">
       <Filter>Common\Include\maxSocket\IP</Filter>
     </ClInclude>
@@ -143,5 +212,8 @@
       <Filter>Common\IP</Filter>
     </None>
     <None Include="..\..\TODO.md" />
+    <None Include="..\..\Dependencies\max\Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies\Documentation.md">
+      <Filter>Dependencies\max\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </None>
   </ItemGroup>
 </Project>

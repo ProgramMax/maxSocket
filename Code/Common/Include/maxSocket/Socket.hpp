@@ -27,17 +27,22 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#ifndef WIN32_LEAN_AND_MEAN
+	#define WIN32_LEAN_AND_MEAN
+	#endif
+
+	#include <Windows.h>
+
+	#define _WINSOCK_DEPRECATED_NO_WARNINGS
+	#include <Winsock2.h>
+#endif
+
 #ifndef MAXSOCKET_SOCKET_HPP
 #define MAXSOCKET_SOCKET_HPP
 
-#ifdef NO_PRECOMPILED_HEADER
-//	#include <Winsock2.h>
-	#include <sys/socket.h>
-	#include <memory>
-	#include <max/Compiling/Configuration/Platform.hpp>
-#else
-	#include "../../../Windows/Include/PrecompiledHeader.hpp"
-#endif // #ifdef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 

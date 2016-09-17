@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Algorithms">
+      <UniqueIdentifier>{9f02e660-04c3-4f78-a9a9-1d539fba1d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{3d56c41a-5f3c-4682-8c25-496962d4d235}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Code\AutomatedTests\EntryPoint.cpp" />
+    <ClCompile Include="..\..\..\Code\AutomatedTests\IsBetweenTest.cpp">
+      <Filter>Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\AutomatedTests\RangeTest.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Code\AutomatedTests\IsBetweenTest.hpp">
+      <Filter>Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\AutomatedTests\RangeTest.hpp">
+      <Filter>Containers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
