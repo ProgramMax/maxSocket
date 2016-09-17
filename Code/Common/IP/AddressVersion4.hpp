@@ -32,9 +32,6 @@
 
 #include <maxSocket/IP/Address.hpp>
 #include <max/Compiling/Configuration/Platform.hpp>
-#ifndef NO_PRECOMPILED_HEADER
-	#include "../../Windows/PrecompiledHeader.hpp"
-#endif // #ifndef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <max/Compiling/VirtualFunctionSpecification.hpp>
 #if defined(MAX_PLATFORM_WINDOWS)

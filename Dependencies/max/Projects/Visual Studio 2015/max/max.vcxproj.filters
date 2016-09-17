@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{4c7c656f-4470-4128-82ed-47a0684591d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code">
+      <UniqueIdentifier>{d2123baa-7920-4f49-b290-6d7dc9d9a7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include">
+      <UniqueIdentifier>{5672a906-1e18-430d-91d0-9f2872581d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max">
+      <UniqueIdentifier>{8fcc280b-3395-4d8f-91f6-efd36b6e095d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Algorithms">
+      <UniqueIdentifier>{ef2b33c4-006e-4524-bad8-393affca4fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Compiling">
+      <UniqueIdentifier>{0e2c42f3-8745-48ac-82e5-055b18b59af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Compiling\Configuration">
+      <UniqueIdentifier>{a107dc5d-8877-40d9-ae69-9c4e1395584e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Compiling\Configuration\Compiler">
+      <UniqueIdentifier>{2e7f9cd0-9d97-4289-9202-0bc4ef0cd599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Compiling\Configuration\Platform">
+      <UniqueIdentifier>{39da6255-01a9-44a9-afa7-68f668fd22fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Logging">
+      <UniqueIdentifier>{9dcc4813-e67e-4464-b4a1-925d3bc861bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Testing">
+      <UniqueIdentifier>{413e845b-b106-4fcc-9f0d-6e2e599c7b97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits">
+      <UniqueIdentifier>{1707eb6e-83a0-4b69-a866-9d79e863cd01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Logging">
+      <UniqueIdentifier>{c902cd84-8175-46e1-8920-13ddbaf175ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Testing">
+      <UniqueIdentifier>{7b58322f-3f75-45bd-b97f-6b3ea473f3a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Hardware">
+      <UniqueIdentifier>{052905f2-d969-4b85-b462-82065c9c7f78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Hardware\CPU">
+      <UniqueIdentifier>{f8149de7-1d90-44eb-b295-2ff5265d9372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware">
+      <UniqueIdentifier>{463dbad1-b062-499a-ab14-1c58b307cc58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware\CPU">
+      <UniqueIdentifier>{70481055-44ea-4c30-874f-98f6284c1f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\max">
+      <UniqueIdentifier>{7537fa1e-d771-4a81-84f1-c8e09f24fba0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\max\v0">
+      <UniqueIdentifier>{f7b357b5-721d-4bec-8443-b6182a1fd974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\max\v0\Containers">
+      <UniqueIdentifier>{02e79c1a-a9dc-42f6-91ea-66de4f005068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\max\v0\Algorithms">
+      <UniqueIdentifier>{b10e5494-b7eb-49a0-8b13-064f9ea93fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Documentation\max\v0\Compiling">
+      <UniqueIdentifier>{c79a2bc5-4845-4128-8999-f4ae5cf4ca9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Containers">
+      <UniqueIdentifier>{71aa0028-8a13-455b-8cd1-e5dcec8cb389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies">
+      <UniqueIdentifier>{2f6cdb25-9641-4172-be50-02d475b213ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Hardware\CPU\CPUIDPolicies">
+      <UniqueIdentifier>{e5889ff7-80aa-4efc-850a-758178506362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\Include\max\Hardware\CPU\IsCPUIDAvailablePolicies">
+      <UniqueIdentifier>{42581643-92b1-4cb3-96f4-f8ab6697eb49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware\CPU\CPUIDPolicies">
+      <UniqueIdentifier>{a2f67fcd-70e1-4176-a3c8-30e6fa0d5df4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware\CPU\GCC">
+      <UniqueIdentifier>{cd62d288-7778-4f93-a87a-f5c279d2e329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Code\TranslationUnits\Hardware\CPU\VC">
+      <UniqueIdentifier>{0943f17f-f740-4046-a510-0747041d7f52}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Code\Include\max\Algorithms\IsBetween.inl">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </None>
+    <None Include="..\..\..\Code\Include\max\Algorithms\ScopedFunctor.inl">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </None>
+    <None Include="..\..\..\Code\Include\max\Algorithms\SwapEndian.inl">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </None>
+    <None Include="..\..\..\Code\Include\max\Compiling\UnreferencedValue.inl">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Code\Include\max\Containers\Range.inl">
+      <Filter>Code\Include\max\Containers</Filter>
+    </None>
+    <None Include="..\..\..\Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies\Documentation.md">
+      <Filter>Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Algorithms\IsBetween.md">
+      <Filter>Documentation\max\v0\Algorithms</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\AliasingOptimizations.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_PURE.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_PURE_WITH_GLOBALS.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_RESTRICTED_POINTER.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_RESTRICTED_REFERENCE.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_RETURNS_RESTRICTED_POINTER.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Compiling\MAX_SEMI_PURE.md">
+      <Filter>Documentation\max\v0\Compiling</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Containers\MakeRange.md">
+      <Filter>Documentation\max\v0\Containers</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Containers\Range.md">
+      <Filter>Documentation\max\v0\Containers</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0\Containers\Range_ctor.md">
+      <Filter>Documentation\max\v0\Containers</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\max\v0.md">
+      <Filter>Documentation\max</Filter>
+    </None>
+    <None Include="..\..\..\Documentation\StyleGuide.md">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="..\..\..\LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Code\Include\max\Algorithms\IsBetween.hpp">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Algorithms\OptimizingAssert.hpp">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Algorithms\ScopedFunctor.hpp">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Algorithms\SwapEndian.hpp">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Algorithms\Yield.hpp">
+      <Filter>Code\Include\max\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Compiler\Clang.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Compiler\GCC.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Compiler\VC.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Platform\Android.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Platform\Linux.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Platform\MacOS.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Platform\Win32.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Compiler.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\Platform.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration\StandardLibrary.hpp">
+      <Filter>Code\Include\max\Compiling\Configuration</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\AliasingOptimizations.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Alignment.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Assume.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\Configuration.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\CurrentVersionNamespace.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\FavorBranchLocality.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\IsRegular.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\MemoryBarrier.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\NoDefault.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\StaticAssert.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\ThrowSpecification.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\UnreferencedValue.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Compiling\VirtualFunctionSpecification.hpp">
+      <Filter>Code\Include\max\Compiling</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Containers\Range.hpp">
+      <Filter>Code\Include\max\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUIDPolicies\AssemblyCPUIDPolicy.hpp">
+      <Filter>Code\Include\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUIDPolicies\GCCAssemblyCPUIDPolicy.hpp">
+      <Filter>Code\Include\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUIDPolicies\VCIntrinsicCPUIDPolicy.hpp">
+      <Filter>Code\Include\max\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\IsCPUIDAvailablePolicies\AssemblyIsCPUIDAvailablePolicy.hpp">
+      <Filter>Code\Include\max\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Logging\DoNothingLogger.hpp">
+      <Filter>Code\Include\max\Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Testing\Test.hpp">
+      <Filter>Code\Include\max\Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Testing\TestSuite.hpp">
+      <Filter>Code\Include\max\Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\Associativity.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CacheInfo.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CacheLevel.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUID.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUIDSubleafArgumentsAndResult.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\CPUIDSubleafResult.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\Prefetch.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\TLB.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\TraceCache.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Code\Include\max\Hardware\CPU\MakeCPUID.hpp">
+      <Filter>Code\Include\max\Hardware\CPU</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\AssemblyCPUIDPolicy.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\GCCAssemblyCPUIDPolicy.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CPUIDPolicies\VCIntrinsicCPUIDPolicy.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\CPUIDPolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies\AssemblyIsCPUIDAvailablePolicy.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\IsCPUIDAvailablePolicies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Logging\DoNothingLogger.cpp">
+      <Filter>Code\TranslationUnits\Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Testing\Test.cpp">
+      <Filter>Code\TranslationUnits\Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Testing\TestSuite.cpp">
+      <Filter>Code\TranslationUnits\Testing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\Associativity.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CacheInfo.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CacheLevel.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CPUID.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\CPUIDSubleafArgumentsAndResult.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\Prefetch.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\TLB.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\TraceCache.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\GCC\MakeCPUID.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\GCC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Code\TranslationUnits\Hardware\CPU\VC\MakeCPUID.cpp">
+      <Filter>Code\TranslationUnits\Hardware\CPU\VC</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

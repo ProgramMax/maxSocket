@@ -30,12 +30,8 @@
 #ifndef MAXSOCKET_BUFFER_HPP
 #define MAXSOCKET_BUFFER_HPP
 
-#ifdef NO_PRECOMPILED_HEADER
-	#include <memory>
-	#include <stdint.h>
-#else
-	#include "PrecompiledHeader.hpp"
-#endif
+#include <memory>
+
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 

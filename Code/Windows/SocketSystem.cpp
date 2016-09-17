@@ -27,11 +27,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "PrecompiledHeader.hpp"
 #include <maxSocket/SocketSystem.hpp>
-#ifdef NO_PRECOMPILED_HEADER
-	#include <Winsock2.h>
-#endif
 
 // These includes alow us to call getaddrinfo on systems prior to Windows XP
 // more info: https://support.microsoft.com/en-us/kb/955045
