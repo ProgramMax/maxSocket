@@ -33,8 +33,13 @@
 #include <iterator>
 #include <memory>
 #include <maxSocket/IP/Address.hpp>
-#include <netdb.h>
-//#include <arpa/inet.h>
+#if defined(MAX_PLATFORM_LINUX)
+	#include <netdb.h>
+	//#include <arpa/inet.h>
+#endif
+#if defined(MAX_PLATFORM_WINDOWS)
+	#include <Ws2tcpip.h>
+#endif
 #include <max/Compiling/CurrentVersionNamespace.hpp>
 
 namespace maxSocket
@@ -67,9 +72,9 @@ namespace IP
 
 		friend class Addresses;
 
-		explicit AddressesIterator( addrinfo * const CurrentLinuxEndPoint );
+		explicit AddressesIterator( addrinfo * const CurrentEndPoint );
 
-		addrinfo * CurrentLinuxEndPoint;
+		addrinfo * CurrentEndPoint;
 
 	}; // class AddressesIterator
 

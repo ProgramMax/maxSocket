@@ -31,9 +31,6 @@
 #define MAXSOCKET_IP_ADDRESS_HPP
 
 #include "Version.hpp"
-#ifndef NO_PRECOMPILED_HEADER
-	#include "../../../../Windows/PrecompiledHeader.hpp"
-#endif // #ifndef NO_PRECOMPILED_HEADER
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <string>
 #include <max/Compiling/CurrentVersionNamespace.hpp>

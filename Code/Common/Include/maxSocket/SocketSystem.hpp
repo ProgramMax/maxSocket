@@ -30,6 +30,12 @@
 #ifndef MAXSOCKET_SOCKETSYSTEM_HPP
 #define MAXSOCKET_SOCKETSYSTEM_HPP
 
+#include <max/Compiling/Configuration.hpp>
+
+#if defined(MAX_PLATFORM_WINDOWS)
+	#pragma comment(lib, "Ws2_32.lib")
+#endif
+
 #include <max/Compiling/ThrowSpecification.hpp>
 #include <maxSocket/AddressFamily.hpp>
 #include <vector>
@@ -57,7 +63,7 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 		}; // enum Enum
 	} // namespace CreateSocketSystemResult
 
-	namespace ResolveHostNameResults
+	namespace ResolveHostnameResults
 	{
 		enum Enum
 		{
@@ -66,12 +72,9 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 			NameServerReturnedAPermanentFailure,
 			OutOfMemory,
 			NetworkHostExistsButHasNoEndPoints,
-			UnknownHostName,
-			EncounteredAnUnknownAddressFamily,
+			UnknownHostname,
 			SystemError,
 			LibraryError,
-			AuthoritiveAnswerHostNotFound,
-			ExceededMaximumEndPointSanityCheck,
 			UnknownError
 		}; // enum Enum
 	} // namespace ResolveHostNameResults
@@ -81,15 +84,12 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 		enum Enum
 		{
 			Success,
-			UnknownIPVersion,
-			UnknownProtocol,
 			NoMoreSocketDescriptorsAvailable,
 			ConnectionRefused,
-			RemoteHostResetConnection,
+			ConnectionResetByEndPoint,
 			TimedOut,
 			NetworkUnreachable,
-			RemoteAddressInvalid,
-			HostUnreachable,
+			EndPointUnreachable,
 			NetworkDown,
 			Interrupted,
 			NotAuthorized,
@@ -106,18 +106,22 @@ MAX_CURRENT_VERSION_NAMESPACE_BEGIN( v0 )
 	{
 	public:
 
-		static CreateSocketSystemResults::Enum CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW;
+		static CreateSocketSystemResults::Enum CreateSocketSystem(
+		                                                           std::unique_ptr< SocketSystem > & CreatedSocketSystem
+		                                                         ) MAX_DOES_NOT_THROW;
 
 		~SocketSystem() MAX_DOES_NOT_THROW;
 
-		ResolveHostNameResults::Enum ResolveHostName( const char * const HostName,
-													  const AddressFamily::Enum AddresFamilyFilter,
-													  IP::Addresses & EndPoints
-													) MAX_DOES_NOT_THROW;
+		ResolveHostnameResults::Enum ResolveHostnameUsingOSDefaults(
+		                                                             const char * const        Hostname,
+													                 const AddressFamily::Enum AddresFamilyFilter,
+													                 IP::Addresses &           EndPoints
+													               ) MAX_DOES_NOT_THROW;
 
-		CreateSocketAndConnectResults::Enum CreateSocketAndConnect( const IP::Address & EndPoint,
-																	const unsigned short Port,
-																	const Protocol::Enum Protocol,
+		CreateSocketAndConnectResults::Enum CreateSocketAndConnect(
+		                                                            const IP::Address &         EndPoint,
+																	const unsigned short        Port,
+																	const Protocol::Enum        Protocol,
 																	std::unique_ptr< Socket > & CreatedSocket
 																  ) MAX_DOES_NOT_THROW;
 

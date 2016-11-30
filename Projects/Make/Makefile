@@ -5,7 +5,7 @@ CXX_SRCS = \
 	$(CODE_DIRECTORY)/Common/Buffer.cpp \
 	$(CODE_DIRECTORY)/Linux/Socket.cpp \
 	$(CODE_DIRECTORY)/Common/IP/Address.cpp \
-	$(CODE_DIRECTORY)/../Tests/TestResolveHostName.cpp \
+	$(CODE_DIRECTORY)/../Tests/TestResolveHostname.cpp \
 	$(CODE_DIRECTORY)/Linux/Addresses.cpp \
 	$(CODE_DIRECTORY)/Linux/AddressesIterator.cpp \
 	$(CODE_DIRECTORY)/Linux/AddressVersion4.cpp \

@@ -27,7 +27,6 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "PrecompiledHeader.hpp"
 #include <maxSocket/SocketSystem.hpp>
 #include <iostream>
 #include <vector>
@@ -49,7 +48,7 @@ int main()
 
 	auto EndPoints = maxSocket::v0::IP::Addresses{};
 
-	auto ResolveHostNameResults = SocketSystem->ResolveHostName( "google.com", maxSocket::AddressFamily::IPv4, EndPoints );
+	auto ResolveHostNameResults = SocketSystem->ResolveHostNameUsingOSDefaults( "google.com", maxSocket::AddressFamily::IPv4, EndPoints );
 	if( ResolveHostNameResults != maxSocket::ResolveHostNameResults::Success )
 	{
 		std::cout << "Error\n";

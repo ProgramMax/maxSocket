@@ -27,7 +27,6 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "PrecompiledHeader.hpp"
 #include <maxSocket/IP/AddressesIterator.hpp>
 #include <maxSocket/IP/Address.hpp>
 #include <maxSocket/IP/AddressVersion4.hpp>
@@ -42,7 +41,7 @@ namespace IP
 
 	AddressesIterator & AddressesIterator::operator ++()
 	{
-		CurrentLinuxEndPoint = CurrentLinuxEndPoint->ai_next;
+		CurrentEndPoint = CurrentEndPoint->ai_next;
 		return *this;
 	}
 
@@ -55,30 +54,30 @@ namespace IP
 
 	bool AddressesIterator::operator ==( const AddressesIterator & rhs ) const
 	{
-		return CurrentLinuxEndPoint == rhs.CurrentLinuxEndPoint;
+		return CurrentEndPoint == rhs.CurrentEndPoint;
 	}
 
 	bool AddressesIterator::operator !=( const AddressesIterator & rhs ) const
 	{
-		return CurrentLinuxEndPoint != rhs.CurrentLinuxEndPoint;
+		return CurrentEndPoint != rhs.CurrentEndPoint;
 	}
 
 	maxSocket::v0::IP::Address AddressesIterator::operator *() const
 	{
-		switch( CurrentLinuxEndPoint->ai_family )
+		switch( CurrentEndPoint->ai_family )
 		{
 		case AF_INET:
-			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion4( * reinterpret_cast< sockaddr_in * >( CurrentLinuxEndPoint->ai_addr ) ) );
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion4( * reinterpret_cast< sockaddr_in * >( CurrentEndPoint->ai_addr ) ) );
 		case AF_INET6:
-			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion6( * reinterpret_cast< sockaddr_in6 * >( CurrentLinuxEndPoint->ai_addr ) ) );
+			return maxSocket::v0::IP::Address( maxSocket::v0::IP::AddressVersion6( * reinterpret_cast< sockaddr_in6 * >( CurrentEndPoint->ai_addr ) ) );
 		default:
 			// We encountered an unknown address family.
 			throw;
 		}
 	}
 
-	AddressesIterator::AddressesIterator( addrinfo * const CurrentLinuxEndPoint )
-		: CurrentLinuxEndPoint( CurrentLinuxEndPoint )
+	AddressesIterator::AddressesIterator( addrinfo * const CurrentEndPoint )
+		: CurrentEndPoint( CurrentEndPoint )
 	{
 	}
 

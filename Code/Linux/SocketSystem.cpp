@@ -27,7 +27,6 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "PrecompiledHeader.hpp"
 #include <maxSocket/SocketSystem.hpp>
 #ifdef NO_PRECOMPILED_HEADER
 	#include <max/Compiling/ThrowSpecification.hpp>
@@ -50,7 +49,9 @@ namespace maxSocket
 namespace v0
 {
 
-	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem( std::unique_ptr< SocketSystem > & CreatedSocketSystem ) MAX_DOES_NOT_THROW
+	CreateSocketSystemResults::Enum SocketSystem::CreateSocketSystem(
+	                                                                  std::unique_ptr< SocketSystem > & CreatedSocketSystem
+	                                                                ) MAX_DOES_NOT_THROW
 	{
 		CreatedSocketSystem.reset( new SocketSystem() );
 		return CreateSocketSystemResults::Success;
@@ -60,10 +61,11 @@ namespace v0
 	{
 	}
 
-	ResolveHostNameResults::Enum SocketSystem::ResolveHostName( const char * const HostName,
-	                                                            const AddressFamily::Enum AddressFamilyFilter,
-	                                                            IP::Addresses & EndPoints
-	                                                          ) MAX_DOES_NOT_THROW
+	ResolveHostnameResults::Enum SocketSystem::ResolveHostnameUsingOSDefaults(
+	                                                                           const char * const        Hostname,
+	                                                                           const AddressFamily::Enum AddressFamilyFilter,
+	                                                                           IP::Addresses &           EndPoints
+	                                                                         ) MAX_DOES_NOT_THROW
 	{
 		//
 		// Prepare parameters for the call to getaddrinfo.
@@ -82,7 +84,7 @@ namespace v0
 			break;
 		default:
 			// maxSocket was not updated to support a newly-added AddressFamily
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 		}
 
 		auto LinuxSocketFilters        = addrinfo{ 0 };
@@ -97,7 +99,7 @@ namespace v0
 		//
 		// Make the call to getaddrinfo.
 		//
-		auto getaddrinfoResult = getaddrinfo( HostName, NULL, & LinuxSocketFilters, & LinuxEndPoints );
+		auto getaddrinfoResult = getaddrinfo( Hostname, NULL, & LinuxSocketFilters, & LinuxEndPoints );
 		switch( getaddrinfoResult )
 		{
 		case 0: // Success
@@ -108,23 +110,23 @@ namespace v0
 		case EAI_FAMILY:     // The requested address family is not supported.
 		case EAI_SOCKTYPE:   // The requested socket type is not supported. This could occur, for example, if hints.ai_socktype and hints.ai_protocol are inconsistent (e.g., SOCKDGRAM and IPPROTO_TCP, respectively).
 		case EAI_SERVICE:    // The requested service is not available for the requested socket type. It may be available through another socket type. For example, this error could occur if service was "shell" (a service only available on stream sockets), and either hints.ai_protocol was IPPROTO_UDP, or hints.ai_socktype was SOCK_DGRAM; or the error could occur if service was not NULL, and hints.ai_socktype was SOCK_RAW (a socket type that does not support the concept of services).
-			return ResolveHostNameResults::LibraryError;
+			return ResolveHostnameResults::LibraryError;
 
 		case EAI_AGAIN:      // The name server returned a temporary failure indication. Try again later.
-			return ResolveHostNameResults::NameServerReturnedATemporaryFailure;
+			return ResolveHostnameResults::NameServerReturnedATemporaryFailure;
 		case EAI_FAIL:       // The name server returned a permanent failure indication.
-			return ResolveHostNameResults::NameServerReturnedAPermanentFailure;
+			return ResolveHostnameResults::NameServerReturnedAPermanentFailure;
 		case EAI_MEMORY:     // Out of memory.
-			return ResolveHostNameResults::OutOfMemory;
+			return ResolveHostnameResults::OutOfMemory;
 		case EAI_NODATA:     // The specified network host exists, but does not have any network addresses defined.
-			return ResolveHostNameResults::NetworkHostExistsButHasNoEndPoints;
+			return ResolveHostnameResults::NetworkHostExistsButHasNoEndPoints;
 		case EAI_NONAME:     // The node or service is not known; or both node and service are NULL; or AI_NUMERICSERV was specified in hints.ai_flags and service was not a numeric port-number string.
-			return ResolveHostNameResults::UnknownHostName;
+			return ResolveHostnameResults::UnknownHostname;
 		case EAI_SYSTEM:     // Other system error, check errno for details.
-			return ResolveHostNameResults::SystemError;
+			return ResolveHostnameResults::SystemError;
 
 		default:
-			return ResolveHostNameResults::UnknownError;
+			return ResolveHostnameResults::UnknownError;
 		}
 
 
@@ -132,12 +134,13 @@ namespace v0
 
 		EndPoints = IP::Addresses( LinuxEndPoints );
 
-		return ResolveHostNameResults::Success;
+		return ResolveHostnameResults::Success;
 	}
 
-	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect( const IP::Address & EndPoint,
-	                                                                          const unsigned short Port,
-	                                                                          const Protocol::Enum Protocol,
+	CreateSocketAndConnectResults::Enum SocketSystem::CreateSocketAndConnect(
+	                                                                          const IP::Address &         EndPoint,
+	                                                                          const unsigned short        Port,
+	                                                                          const Protocol::Enum        Protocol,
 	                                                                          std::unique_ptr< Socket > & CreatedSocket
 	                                                                        ) MAX_DOES_NOT_THROW
 	{
@@ -151,11 +154,11 @@ namespace v0
 			AddressFamily = PF_INET6;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownIPVersion;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 		auto LinuxSocketType = SOCK_STREAM;
-		auto LinuxProtocol = IPPROTO_TCP;
+		auto LinuxProtocol   = IPPROTO_TCP;
 		switch( Protocol )
 		{
 		case Protocol::TCP:
@@ -167,7 +170,7 @@ namespace v0
 			LinuxProtocol   = IPPROTO_UDP;
 			break;
 		default:
-			return CreateSocketAndConnectResults::UnknownProtocol;
+			return CreateSocketAndConnectResults::LibraryError;
 		}
 
 
@@ -221,7 +224,7 @@ namespace v0
 				}
 				break;
 			default:
-				return CreateSocketAndConnectResults::UnknownIPVersion;
+				return CreateSocketAndConnectResults::LibraryError;
 			}
 			auto connectResult = connect( NativeSocketHandle, reinterpret_cast< sockaddr * >( Address ), AddressLength );
 			if( connectResult == -1 )
@@ -231,7 +234,6 @@ namespace v0
 				{
 				case EADDRNOTAVAIL: // The specified address is not available from the local machine.
 				case EAFNOSUPPORT:  // The specified address is not a valid address for the address family of the specified socket.
-					return CreateSocketAndConnectResults::RemoteAddressInvalid;
 				case EALREADY:      // A connection request is already in progress for the specified socket.
 				case EBADF:         // The socket argument is not a valid file descriptor.
 				case EINPROGRESS:   // O_NONBLOCK is set for the file descriptor for the socket and the connection cannot be immediately established; the connection shall be established asynchronously.
@@ -260,9 +262,9 @@ namespace v0
 				case EIO:           // An I/O error occurred whil reading from or writing to the file system.
 					return CreateSocketAndConnectResults::SystemError;
 				case ECONNRESET:    // Remote host reset the connection request.
-					return CreateSocketAndConnectResults::RemoteHostResetConnection;
+					return CreateSocketAndConnectResults::ConnectionResetByEndPoint;
 				case EHOSTUNREACH:  // The destination host cannot be reached (probably because the host is down or a remote router cannot reach it).
-					return CreateSocketAndConnectResults::HostUnreachable;
+					return CreateSocketAndConnectResults::EndPointUnreachable;
 				case ENETDOWN:      // The local network interface used to reach the destinatino is down.
 					return CreateSocketAndConnectResults::NetworkDown;
 				case ENOBUFS:       // No buffer space is available.
