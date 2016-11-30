@@ -1,6 +1,6 @@
 PROGRAM_NAME = maxSocket
 CODE_DIRECTORY = ../../Code
-LIBRARIES_DIRECTORY = ../../Libraries
+LIBRARIES_DIRECTORY = ../../Dependencies/max/Code/Include
 CXX_SRCS = \
 	$(CODE_DIRECTORY)/Common/Buffer.cpp \
 	$(CODE_DIRECTORY)/Linux/Socket.cpp \
